@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
   const page = Math.max(1, Number(req.query['page']) || 1);
   const pageSize = Math.min(100, Math.max(1, Number(req.query['page_size']) || 10));
   const search = (req.query['search'] as string | undefined)?.trim();
+  const slug = req.query['slug'] as string | undefined;
   const status = req.query['status'] ? Number(req.query['status']) : undefined;
   const authorId = req.query['author_id'] as string | undefined;
   const site = req.query['site'] as string | undefined;
@@ -47,6 +48,10 @@ router.get('/', async (req, res) => {
   if (site) {
     params.push(site);
     conditions.push(`site = $${params.length}`);
+  }
+  if (slug) {
+    params.push(slug);
+    conditions.push(`slug = $${params.length}`);
   }
 
   const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
