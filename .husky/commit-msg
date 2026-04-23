@@ -1,0 +1,9 @@
+#!/bin/sh
+# Regex to check for CTNT-### prefix + conventional commit style
+commit_msg=$(cat "$1")
+pattern="^CTNT-[0-9]+ (feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .+"
+
+if ! echo "$commit_msg" | grep -Eq "$pattern"; then
+  echo "❌ Error: Commit message must follow pattern 'CTNT-123 feat: description'"
+  exit 1
+fi

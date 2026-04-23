@@ -1,0 +1,21 @@
+{
+  "name": "contently-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "server",
+    "mock-services/*",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "docker compose up",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "type-check": "npm run type-check --workspaces",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}
