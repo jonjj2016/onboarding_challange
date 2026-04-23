@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const typeDefs = gql`
   extend schema
-    @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@external", "@shareable"])
+    @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable"])
 
   type Query {
     product(id: ID!): Product
@@ -20,8 +20,6 @@ export const typeDefs = gql`
     imageUrl: String!
   }
 
-  # Extends Content (owned by rover) to contribute the products field.
-  # __resolveReference here receives { id } and returns products via DataLoader.
   type Content @key(fields: "id") {
     id: ID!
     products: [Product!]!

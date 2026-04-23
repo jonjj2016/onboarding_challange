@@ -1,15 +1,15 @@
+/// <reference path="./types.d.ts" />
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloGateway, IntrospectAndCompose } from '@apollo/gateway';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
-import session from 'express-session';
-import { authRouter } from './auth';
+import { authRouter, extractToken } from './auth';
 import { startRoverSubgraph } from './graphql/rover';
 import { startVaderSubgraph } from './graphql/vader';
 
 async function main() {
-  // Subgraphs run on internal ports within the same process
   await startRoverSubgraph(4010);
   await startVaderSubgraph(4011);
 
@@ -29,14 +29,8 @@ async function main() {
 
   app.use(cors({ origin: true, credentials: true }));
   app.use(express.json());
-  app.use(
-    session({
-      secret: process.env.SESSION_SECRET || 'dev-secret',
-      resave: false,
-      saveUninitialized: false,
-      cookie: { httpOnly: true, secure: false },
-    }),
-  );
+  app.use(cookieParser());
+  app.use(extractToken);
 
   app.use('/api', authRouter);
 

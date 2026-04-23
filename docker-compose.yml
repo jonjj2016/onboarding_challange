@@ -52,7 +52,7 @@ services:
     environment:
       ROVER_SERVICE_URL: http://rover-mock:4001
       VADER_SERVICE_URL: http://vader-mock:4002
-      SESSION_SECRET: super-secret-key
+      JWT_SECRET: super-secret-jwt-key
       PORT: 8080
     depends_on:
       - rover-mock
