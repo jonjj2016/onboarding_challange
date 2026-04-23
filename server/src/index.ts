@@ -5,7 +5,7 @@ import { ApolloGateway, IntrospectAndCompose } from '@apollo/gateway';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
-import { authRouter, extractToken } from './auth';
+import { authRouter, extractToken } from './modules/auth';
 import { startRoverSubgraph } from './graphql/rover';
 import { startVaderSubgraph } from './graphql/vader';
 
