@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider, CssBaseline, CircularProgress, Box } from '@mui/material';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -7,6 +7,8 @@ import { AuthProvider } from 'contexts/auth-context';
 import RequireAuth from 'components/require-auth';
 import { theme } from 'lib/theme';
 import { LoginPage, ContentListPage, ContentEditPage, ContentNewPage } from 'data/routes';
+
+const AppLayout = lazy(() => import('layouts/app-layout'));
 
 function PageLoader() {
   return (
@@ -27,11 +29,12 @@ export default function App() {
               <Routes>
                 <Route path="/login" element={<LoginPage />} />
 
-                {/* All routes below require authentication */}
                 <Route element={<RequireAuth />}>
-                  <Route path="/content" element={<ContentListPage />} />
-                  <Route path="/content/edit/:id" element={<ContentEditPage />} />
-                  <Route path="/content/new" element={<ContentNewPage />} />
+                  <Route element={<AppLayout />}>
+                    <Route path="/content" element={<ContentListPage />} />
+                    <Route path="/content/edit/:id" element={<ContentEditPage />} />
+                    <Route path="/content/new" element={<ContentNewPage />} />
+                  </Route>
                 </Route>
 
                 <Route path="*" element={<Navigate to="/content" replace />} />

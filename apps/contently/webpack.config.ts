@@ -31,6 +31,7 @@ const config: Configuration & { devServer?: DevServerConfiguration } = {
       stores: path.resolve(__dirname, 'src/stores'),
       hooks: path.resolve(__dirname, 'src/hooks'),
       pages: path.resolve(__dirname, 'src/pages'),
+      layouts: path.resolve(__dirname, 'src/layouts'),
       data: path.resolve(__dirname, 'src/data'),
       '@contently/toolkit': path.resolve(__dirname, '../../packages/toolkit/src/index.ts'),
     },
