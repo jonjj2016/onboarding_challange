@@ -1,8 +1,8 @@
 import cors from 'cors';
 import express from 'express';
 import { artificialDelay } from './middleware/delay';
-import contentProductsRouter from './routes/content-products';
-import productsRouter from './routes/products';
+import { contentProductsRouter } from './modules/content-products';
+import { productsRouter } from './modules/products';
 
 const app = express();
 
