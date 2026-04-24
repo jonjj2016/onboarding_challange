@@ -42,7 +42,7 @@ export class RoverDataSource extends RESTDataSource {
 
   // Batches individual author fetches within a single request into one API call
   private authorLoader = new DataLoader<string, Author>(async (ids) => {
-    const res = await this.get<Envelope<Author[]>>('/v2/authors', {
+    const res = await this.get<Envelope<Author[]>>('/v1/authors', {
       params: { 'id:in': ids.join(',') },
     });
     const byId = new Map(
@@ -52,12 +52,12 @@ export class RoverDataSource extends RESTDataSource {
   });
 
   async getContent(id: string): Promise<Content> {
-    const res = await this.get<Envelope<Record<string, unknown>>>(`/v2/content/${id}`);
+    const res = await this.get<Envelope<Record<string, unknown>>>(`/v1/content/${id}`);
     return convertKeysToCamel<Content>(res.data);
   }
 
   async getContents(params: Record<string, string>): Promise<{ data: Content[]; meta: PageMeta }> {
-    const res = await this.get<Envelope<Record<string, unknown>[]>>('/v2/content', { params });
+    const res = await this.get<Envelope<Record<string, unknown>[]>>('/v1/content', { params });
     const meta = res.meta as RawMeta;
     return {
       data: res.data.map((c) => convertKeysToCamel<Content>(c)),
@@ -70,7 +70,7 @@ export class RoverDataSource extends RESTDataSource {
   }
 
   async getAuthors(params: Record<string, string>): Promise<{ data: Author[]; meta: PageMeta }> {
-    const res = await this.get<Envelope<Record<string, unknown>[]>>('/v2/authors', { params });
+    const res = await this.get<Envelope<Record<string, unknown>[]>>('/v1/authors', { params });
     const meta = res.meta as RawMeta;
     return {
       data: res.data.map((a) => convertKeysToCamel<Author>(a)),
@@ -79,7 +79,7 @@ export class RoverDataSource extends RESTDataSource {
   }
 
   async isSlugAvailable(slug: string, site: string, excludeId?: string): Promise<boolean> {
-    const res = await this.get<Envelope<Record<string, unknown>[]>>('/v2/content', {
+    const res = await this.get<Envelope<Record<string, unknown>[]>>('/v1/content', {
       params: { slug, site, page_size: '1' },
     });
     const matches = res.data.map((c) => convertKeysToCamel<Content>(c));
@@ -90,7 +90,7 @@ export class RoverDataSource extends RESTDataSource {
   }
 
   async createContent(input: Record<string, unknown>): Promise<Content> {
-    const res = await this.post<Envelope<Record<string, unknown>>>('/v2/content', {
+    const res = await this.post<Envelope<Record<string, unknown>>>('/v1/content', {
       body: JSON.stringify(input),
       headers: { 'Content-Type': 'application/json' },
     });
@@ -98,7 +98,7 @@ export class RoverDataSource extends RESTDataSource {
   }
 
   async updateContent(id: string, input: Record<string, unknown>): Promise<Content> {
-    const res = await this.patch<Envelope<Record<string, unknown>>>(`/v2/content/${id}`, {
+    const res = await this.patch<Envelope<Record<string, unknown>>>(`/v1/content/${id}`, {
       body: JSON.stringify(input),
       headers: { 'Content-Type': 'application/json' },
     });
