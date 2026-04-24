@@ -103,7 +103,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'Fermentation Fundamentals',
     slug: 'fermentation-fundamentals',
-    body: '<p>Fermentation is one of humanity\'s oldest food preservation techniques. <strong>Lacto-fermentation</strong> requires only salt, water, and time. A 2% salt brine by weight creates an inhospitable environment for harmful bacteria while allowing Lactobacillus to thrive.</p>',
+    body: "<p>Fermentation is one of humanity's oldest food preservation techniques. <strong>Lacto-fermentation</strong> requires only salt, water, and time. A 2% salt brine by weight creates an inhospitable environment for harmful bacteria while allowing Lactobacillus to thrive.</p>",
     status: ContentStatus.Published,
     site: 'site-us-cooking',
     author_index: 3,
@@ -168,7 +168,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'Sustainable Fashion Guide',
     slug: 'sustainable-fashion-guide',
-    body: '<p>Fashion is the second-largest polluter in the world. Start with the <strong>cost-per-wear</strong> formula: divide the price of a garment by the number of times you\'ll realistically wear it. Look for certifications like <em>GOTS</em> and <em>Fair Trade</em>.</p>',
+    body: "<p>Fashion is the second-largest polluter in the world. Start with the <strong>cost-per-wear</strong> formula: divide the price of a garment by the number of times you'll realistically wear it. Look for certifications like <em>GOTS</em> and <em>Fair Trade</em>.</p>",
     status: ContentStatus.Published,
     site: 'site-us-fashion',
     author_index: 1,
@@ -184,7 +184,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'The Return of Y2K',
     slug: 'the-return-of-y2k',
-    body: '<p>Early-2000s fashion is officially back. Low-rise jeans, butterfly clips, and velour tracksuits are filling Instagram feeds. <strong>Why now?</strong> Nostalgia cycles roughly every 20–25 years, meaning today\'s twenty-somethings are rediscovering the aesthetics of their early childhood.</p>',
+    body: "<p>Early-2000s fashion is officially back. Low-rise jeans, butterfly clips, and velour tracksuits are filling Instagram feeds. <strong>Why now?</strong> Nostalgia cycles roughly every 20–25 years, meaning today's twenty-somethings are rediscovering the aesthetics of their early childhood.</p>",
     status: ContentStatus.Published,
     site: 'site-us-fashion',
     author_index: 3,
@@ -216,7 +216,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'Denim Through the Decades',
     slug: 'denim-through-the-decades',
-    body: '<p>From workwear to counterculture symbol, denim\'s journey tracks broader social history. James Dean\'s Levi\'s in <em>Rebel Without a Cause</em> made blue jeans synonymous with youth rebellion. The 1970s brought bell-bottoms; the 1990s went back to basics with straight-leg fits.</p>',
+    body: "<p>From workwear to counterculture symbol, denim's journey tracks broader social history. James Dean's Levi's in <em>Rebel Without a Cause</em> made blue jeans synonymous with youth rebellion. The 1970s brought bell-bottoms; the 1990s went back to basics with straight-leg fits.</p>",
     status: ContentStatus.Unpublished,
     site: 'site-us-fashion',
     author_index: 7,
@@ -224,7 +224,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'Color Blocking for Beginners',
     slug: 'color-blocking-for-beginners',
-    body: '<p>Color blocking — wearing two or more bold, contrasting solid colors — is one of fashion\'s most striking techniques. The key is <strong>color theory</strong>: complementary colors create drama; analogous colors create harmonious looks. Start simple: cobalt blue trousers with a burnt orange top.</p>',
+    body: "<p>Color blocking — wearing two or more bold, contrasting solid colors — is one of fashion's most striking techniques. The key is <strong>color theory</strong>: complementary colors create drama; analogous colors create harmonious looks. Start simple: cobalt blue trousers with a burnt orange top.</p>",
     status: ContentStatus.Draft,
     site: 'site-us-fashion',
     author_index: 8,
@@ -232,7 +232,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'The Minimalist Wardrobe',
     slug: 'the-minimalist-wardrobe',
-    body: '<p>Minimalism in fashion isn\'t about owning fewer things at the expense of style. A truly minimalist wardrobe functions like a good equation: every variable matters, nothing is redundant. The palette is tight, the silhouettes are classic, the quality is the highest you can sustainably afford.</p>',
+    body: "<p>Minimalism in fashion isn't about owning fewer things at the expense of style. A truly minimalist wardrobe functions like a good equation: every variable matters, nothing is redundant. The palette is tight, the silhouettes are classic, the quality is the highest you can sustainably afford.</p>",
     status: ContentStatus.Published,
     site: 'site-us-fashion',
     author_index: 9,
@@ -241,7 +241,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'Hidden Gems of Southeast Asia',
     slug: 'hidden-gems-southeast-asia',
-    body: '<p>Southeast Asia\'s most memorable experiences are often found off the tourist trail. <strong>Kampot, Cambodia</strong> — a sleepy riverside town famous for its pepper plantations — offers colonial-era architecture and a pace of life untouched by mass tourism.</p>',
+    body: "<p>Southeast Asia's most memorable experiences are often found off the tourist trail. <strong>Kampot, Cambodia</strong> — a sleepy riverside town famous for its pepper plantations — offers colonial-era architecture and a pace of life untouched by mass tourism.</p>",
     status: ContentStatus.Published,
     site: 'site-us-travel',
     author_index: 0,
@@ -265,7 +265,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'The Best Mountain Hiking Trails',
     slug: 'best-mountain-hiking-trails',
-    body: '<p>The <strong>Tour du Mont Blanc</strong> (11 days, 3 countries) is the classic introduction to alpine trekking. For the more adventurous, Peru\'s <strong>Huayhuash Circuit</strong> is technically demanding but rewards with views of some of the Andes\' sharpest peaks.</p>',
+    body: "<p>The <strong>Tour du Mont Blanc</strong> (11 days, 3 countries) is the classic introduction to alpine trekking. For the more adventurous, Peru's <strong>Huayhuash Circuit</strong> is technically demanding but rewards with views of some of the Andes' sharpest peaks.</p>",
     status: ContentStatus.Published,
     site: 'site-us-travel',
     author_index: 3,
@@ -281,7 +281,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'Luxury Safari in Africa',
     slug: 'luxury-safari-in-africa',
-    body: '<p>The Serengeti\'s <strong>Great Migration</strong> — 1.5 million wildebeest moving between Tanzania and Kenya — is the largest animal migration on earth. Stay in a tented camp for authenticity; the canvas walls connect you to the sounds of the bush in a way permanent structures cannot.</p>',
+    body: "<p>The Serengeti's <strong>Great Migration</strong> — 1.5 million wildebeest moving between Tanzania and Kenya — is the largest animal migration on earth. Stay in a tented camp for authenticity; the canvas walls connect you to the sounds of the bush in a way permanent structures cannot.</p>",
     status: ContentStatus.Draft,
     site: 'site-us-travel',
     author_index: 5,
@@ -305,7 +305,7 @@ const CONTENTS: ContentSeed[] = [
   {
     title: 'Digital Nomad Guide to Bali',
     slug: 'digital-nomad-guide-to-bali',
-    body: '<p>Bali has become the world\'s most recognizable digital nomad destination: fast internet, abundant coworking spaces, a low cost of living. <strong>Canggu</strong> is the epicenter — dense with cafés that double as offices. <strong>Ubud</strong> offers a quieter creative atmosphere in the rice terraces.</p>',
+    body: "<p>Bali has become the world's most recognizable digital nomad destination: fast internet, abundant coworking spaces, a low cost of living. <strong>Canggu</strong> is the epicenter — dense with cafés that double as offices. <strong>Ubud</strong> offers a quieter creative atmosphere in the rice terraces.</p>",
     status: ContentStatus.Published,
     site: 'site-us-travel',
     author_index: 8,
@@ -328,10 +328,11 @@ export async function seed(): Promise<void> {
   }
 
   for (let i = 0; i < AUTHORS.length; i++) {
-    await pool.query(
-      'INSERT INTO authors (id, name, email) VALUES ($1, $2, $3)',
-      [AUTHOR_IDS[i], AUTHORS[i].name, AUTHORS[i].email],
-    );
+    await pool.query('INSERT INTO authors (id, name, email) VALUES ($1, $2, $3)', [
+      AUTHOR_IDS[i],
+      AUTHORS[i].name,
+      AUTHORS[i].email,
+    ]);
   }
 
   for (let i = 0; i < CONTENTS.length; i++) {
@@ -339,15 +340,7 @@ export async function seed(): Promise<void> {
     await pool.query(
       `INSERT INTO contents (id, title, slug, body, status, author_id, site)
        VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-      [
-        CONTENT_IDS[i],
-        c.title,
-        c.slug,
-        c.body,
-        c.status,
-        AUTHOR_IDS[c.author_index],
-        c.site,
-      ],
+      [CONTENT_IDS[i], c.title, c.slug, c.body, c.status, AUTHOR_IDS[c.author_index], c.site],
     );
   }
 

@@ -8,17 +8,17 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./scripts/init-dbs.sql:/docker-entrypoint-initdb.d/init-dbs.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
       interval: 5s
       timeout: 5s
       retries: 10
     ports:
-      - "5432:5432"
+      - '5432:5432'
 
   rover-mock:
     build: ./mock-services/rover-mock
     ports:
-      - "4001:4001"
+      - '4001:4001'
     environment:
       DB_HOST: postgres
       DB_PORT: 5432
@@ -30,7 +30,7 @@ services:
       postgres:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:4001/health || exit 1"]
+      test: ['CMD-SHELL', 'wget -qO- http://localhost:4001/health || exit 1']
       interval: 10s
       timeout: 5s
       retries: 10
@@ -39,7 +39,7 @@ services:
   vader-mock:
     build: ./mock-services/vader-mock
     ports:
-      - "4002:4002"
+      - '4002:4002'
     environment:
       DB_HOST: postgres
       DB_PORT: 5432
@@ -51,7 +51,7 @@ services:
       postgres:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:4002/health || exit 1"]
+      test: ['CMD-SHELL', 'wget -qO- http://localhost:4002/health || exit 1']
       interval: 10s
       timeout: 5s
       retries: 10
@@ -60,7 +60,7 @@ services:
   gateway:
     build: ./server
     ports:
-      - "8080:8080"
+      - '8080:8080'
     environment:
       ROVER_SERVICE_URL: http://rover-mock:4001
       VADER_SERVICE_URL: http://vader-mock:4002

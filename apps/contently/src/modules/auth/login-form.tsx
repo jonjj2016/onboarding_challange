@@ -11,7 +11,10 @@ interface LoginFormProps {
 }
 
 export default function LoginForm({ form, serverError, isSubmitting, onSubmit }: LoginFormProps) {
-  const { register, formState: { errors } } = form;
+  const {
+    register,
+    formState: { errors },
+  } = form;
 
   return (
     <Box component="form" onSubmit={onSubmit} noValidate>
@@ -25,18 +28,11 @@ export default function LoginForm({ form, serverError, isSubmitting, onSubmit }:
         {...register('email')}
         label="Email address"
         type="email"
-        autoFocus
         error={errors.email?.message}
         sx={{ mb: 3 }}
       />
 
-      <Button
-        type="submit"
-        variant="primary"
-        fullWidth
-        size="large"
-        isLoading={isSubmitting}
-      >
+      <Button type="submit" variant="primary" fullWidth size="large" isLoading={isSubmitting}>
         Sign in
       </Button>
     </Box>

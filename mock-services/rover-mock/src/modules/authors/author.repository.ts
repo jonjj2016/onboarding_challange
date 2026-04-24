@@ -33,10 +33,7 @@ export class AuthorRepository implements IAuthorRepository {
   }
 
   async findById(id: string): Promise<AuthorDto | null> {
-    const { rows } = await this.pool.query<AuthorDto>(
-      'SELECT * FROM authors WHERE id = $1',
-      [id],
-    );
+    const { rows } = await this.pool.query<AuthorDto>('SELECT * FROM authors WHERE id = $1', [id]);
     return rows[0] ?? null;
   }
 

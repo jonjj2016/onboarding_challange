@@ -1,11 +1,31 @@
 import type { IAuthRepository, User } from './auth.interface';
 
 const USERS: User[] = [
-  { id: 'a0000000-0000-0000-0000-000000000001', name: 'Alice Chen', email: 'alice.chen@contently.com' },
-  { id: 'a0000000-0000-0000-0000-000000000002', name: 'Bob Martinez', email: 'bob.martinez@contently.com' },
-  { id: 'a0000000-0000-0000-0000-000000000003', name: 'Carol Johnson', email: 'carol.johnson@contently.com' },
-  { id: 'a0000000-0000-0000-0000-000000000004', name: 'David Kim', email: 'david.kim@contently.com' },
-  { id: 'a0000000-0000-0000-0000-000000000005', name: 'Emma Wilson', email: 'emma.wilson@contently.com' },
+  {
+    id: 'a0000000-0000-0000-0000-000000000001',
+    name: 'Alice Chen',
+    email: 'alice.chen@contently.com',
+  },
+  {
+    id: 'a0000000-0000-0000-0000-000000000002',
+    name: 'Bob Martinez',
+    email: 'bob.martinez@contently.com',
+  },
+  {
+    id: 'a0000000-0000-0000-0000-000000000003',
+    name: 'Carol Johnson',
+    email: 'carol.johnson@contently.com',
+  },
+  {
+    id: 'a0000000-0000-0000-0000-000000000004',
+    name: 'David Kim',
+    email: 'david.kim@contently.com',
+  },
+  {
+    id: 'a0000000-0000-0000-0000-000000000005',
+    name: 'Emma Wilson',
+    email: 'emma.wilson@contently.com',
+  },
 ];
 
 export class InMemoryAuthRepository implements IAuthRepository {

@@ -10,13 +10,9 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      'sans-serif',
-    ].join(','),
+    fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'].join(
+      ',',
+    ),
   },
   shape: {
     borderRadius: 8,

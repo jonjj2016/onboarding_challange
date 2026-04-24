@@ -25,6 +25,7 @@ docker compose up --build
 First boot takes a minute — Postgres needs to initialize, then both mocks run migrations and seed their data. On every subsequent boot it's much faster.
 
 Once everything is up:
+
 - GraphQL sandbox → http://localhost:8080/graphql
 - rover-mock health → http://localhost:4001/health
 - vader-mock health → http://localhost:4002/health
@@ -67,15 +68,16 @@ query {
 
 Three sites, seeded on first boot:
 
-| Site | Content records |
-|------|----------------|
-| site-us-cooking | 10 |
-| site-us-fashion | 10 |
-| site-us-travel | 10 |
+| Site            | Content records |
+| --------------- | --------------- |
+| site-us-cooking | 10              |
+| site-us-fashion | 10              |
+| site-us-travel  | 10              |
 
 25 products, ~90 content↔product links across all sites.
 
 Login emails you can use (POST /api/login with `{ "email": "..." }`):
+
 - alice.chen@contently.com
 - bob.martinez@contently.com
 - carol.johnson@contently.com

@@ -1,4 +1,4 @@
-/// <reference path="./types.d.ts" />
+/// <reference path="./types.d.ts" /> // oxlint-disable-line typescript/triple-slash-reference
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloGateway, IntrospectAndCompose } from '@apollo/gateway';

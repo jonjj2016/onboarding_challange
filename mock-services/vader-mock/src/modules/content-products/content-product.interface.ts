@@ -8,7 +8,10 @@ export interface IContentProductRepository {
 
 export interface IContentProductService {
   getProductsForContents(contentIds: string[]): Promise<ProductsByContentDto[]>;
-  updateContentProducts(contentId: string, productIds: string[]): Promise<UpdateContentProductsResultDto>;
+  updateContentProducts(
+    contentId: string,
+    productIds: string[],
+  ): Promise<UpdateContentProductsResultDto>;
 }
 
 export interface IContentProductController {

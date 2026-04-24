@@ -33,10 +33,9 @@ export class ProductRepository implements IProductRepository {
   }
 
   async findById(id: string): Promise<ProductDto | null> {
-    const { rows } = await this.pool.query<ProductDto>(
-      'SELECT * FROM products WHERE id = $1',
-      [id],
-    );
+    const { rows } = await this.pool.query<ProductDto>('SELECT * FROM products WHERE id = $1', [
+      id,
+    ]);
     return rows[0] ?? null;
   }
 

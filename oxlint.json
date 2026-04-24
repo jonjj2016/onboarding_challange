@@ -1,0 +1,28 @@
+{
+  "plugins": ["react", "typescript", "jsx-a11y"],
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "rules": {
+    "no-console": "error",
+    "no-debugger": "error",
+    "typescript/no-explicit-any": "error",
+    "typescript/no-unused-vars": "error",
+    "react/jsx-no-target-blank": "error",
+    "react/no-unknown-property": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "jsx-a11y/alt-text": "error",
+    "jsx-a11y/anchor-is-valid": "error"
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "build",
+    "*.config.ts",
+    "*.config.js",
+    "babel.config.json",
+    "jest.config.js"
+  ]
+}

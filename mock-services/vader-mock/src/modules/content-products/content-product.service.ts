@@ -1,5 +1,8 @@
 import type { ProductsByContentDto, UpdateContentProductsResultDto } from './dto';
-import type { IContentProductRepository, IContentProductService } from './content-product.interface';
+import type {
+  IContentProductRepository,
+  IContentProductService,
+} from './content-product.interface';
 
 export class ContentProductService implements IContentProductService {
   constructor(private readonly repository: IContentProductRepository) {}

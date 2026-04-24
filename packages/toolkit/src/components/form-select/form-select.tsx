@@ -1,11 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-} from '@mui/material';
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
 import { Loading } from '../loading/loading';
 
 export interface SelectOption {

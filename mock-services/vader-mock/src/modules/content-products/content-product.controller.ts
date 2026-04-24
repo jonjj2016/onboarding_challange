@@ -1,5 +1,8 @@
 import type { Request, Response } from 'express';
-import type { IContentProductController, IContentProductService } from './content-product.interface';
+import type {
+  IContentProductController,
+  IContentProductService,
+} from './content-product.interface';
 
 export class ContentProductController implements IContentProductController {
   constructor(private readonly service: IContentProductService) {}

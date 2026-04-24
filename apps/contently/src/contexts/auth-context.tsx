@@ -20,7 +20,7 @@ async function fetchMe(): Promise<User | null> {
   try {
     const res = await fetch('/api/me', { credentials: 'include' });
     if (!res.ok) return null;
-    const { data } = await res.json() as { data: User };
+    const { data } = (await res.json()) as { data: User };
     return data;
   } catch {
     return null;
@@ -47,7 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
 
     if (!res.ok) {
-      const { error } = await res.json() as { error: string };
+      const { error } = (await res.json()) as { error: string };
       throw new Error(error);
     }
 

@@ -71,7 +71,10 @@ export class VaderDataSource extends RESTDataSource {
     };
   }
 
-  async updateContentProducts(contentId: string, productIds: string[]): Promise<{ contentId: string; productIds: string[] }> {
+  async updateContentProducts(
+    contentId: string,
+    productIds: string[],
+  ): Promise<{ contentId: string; productIds: string[] }> {
     await this.put(`/v2/content-products/${contentId}`, {
       body: JSON.stringify({ product_ids: productIds }),
       headers: { 'Content-Type': 'application/json' },

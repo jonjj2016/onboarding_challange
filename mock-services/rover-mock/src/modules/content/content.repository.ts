@@ -34,10 +34,13 @@ export class ContentRepository implements IContentRepository {
 
     const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
     const orderBy =
-      sort === 'title_asc' ? 'title ASC'
-      : sort === 'title_desc' ? 'title DESC'
-      : sort === 'updated_asc' ? 'updated_at ASC'
-      : 'updated_at DESC';
+      sort === 'title_asc'
+        ? 'title ASC'
+        : sort === 'title_desc'
+          ? 'title DESC'
+          : sort === 'updated_asc'
+            ? 'updated_at ASC'
+            : 'updated_at DESC';
 
     const { rows: countRows } = await this.pool.query<{ count: string }>(
       `SELECT COUNT(*) FROM contents ${where}`,
@@ -55,10 +58,9 @@ export class ContentRepository implements IContentRepository {
   }
 
   async findById(id: string): Promise<ContentDto | null> {
-    const { rows } = await this.pool.query<ContentDto>(
-      'SELECT * FROM contents WHERE id = $1',
-      [id],
-    );
+    const { rows } = await this.pool.query<ContentDto>('SELECT * FROM contents WHERE id = $1', [
+      id,
+    ]);
     return rows[0] ?? null;
   }
 

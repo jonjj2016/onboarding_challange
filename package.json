@@ -1,21 +1,33 @@
 {
-    "name": "contently-monorepo",
-    "private": true,
-    "workspaces": [
-        "apps/*",
-        "packages/*",
-        "server",
-        "mock-services/*",
-        "shared"
-    ],
-    "scripts": {
-        "dev": "docker compose up",
-        "test": "npm run test --workspaces",
-        "prepare": "husky",
-        "lint": "echo 'Linting... (TODO: setup oxlint)'",
-        "type-check": "echo 'Type-checking... (TODO: setup tsc)'"
-    },
-    "devDependencies": {
-        "husky": "^9.1.7"
-    }
+  "name": "contently-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "server",
+    "mock-services/*",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "docker compose up",
+    "test": "npm run test --workspaces",
+    "prepare": "husky",
+    "lint:oxlint": "oxlint --config oxlint.json apps/contently/src packages/toolkit/src",
+    "lint:eslint": "eslint apps/contently/src server/src packages/toolkit/src",
+    "lint:format": "prettier --check .",
+    "lint:check": "npm run lint:oxlint && npm run lint:eslint && npm run lint:format",
+    "lint:fix": "prettier --write . && oxlint --fix apps/contently/src server/src packages/toolkit/src && eslint --fix apps/contently/src server/src packages/toolkit/src",
+    "type-check": "tsc --noEmit -p apps/contently/tsconfig.json && tsc --noEmit -p server/tsconfig.json && tsc --noEmit -p packages/toolkit/tsconfig.json"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.59.0",
+    "@typescript-eslint/parser": "^8.59.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "oxlint": "^1.61.0",
+    "prettier": "^3.8.3"
+  }
 }

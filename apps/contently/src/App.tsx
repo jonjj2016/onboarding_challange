@@ -6,12 +6,7 @@ import { apolloClient } from 'lib/apollo-client';
 import { AuthProvider } from 'contexts/auth-context';
 import RequireAuth from 'components/require-auth';
 import { theme } from 'lib/theme';
-import {
-  LoginPage,
-  ContentListPage,
-  ContentEditPage,
-  ContentNewPage,
-} from 'data/routes';
+import { LoginPage, ContentListPage, ContentEditPage, ContentNewPage } from 'data/routes';
 
 function PageLoader() {
   return (

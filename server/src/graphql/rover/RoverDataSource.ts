@@ -45,9 +45,7 @@ export class RoverDataSource extends RESTDataSource {
     const res = await this.get<Envelope<Author[]>>('/v1/authors', {
       params: { 'id:in': ids.join(',') },
     });
-    const byId = new Map(
-      res.data.map((a) => [a.id, convertKeysToCamel<Author>(a)]),
-    );
+    const byId = new Map(res.data.map((a) => [a.id, convertKeysToCamel<Author>(a)]));
     return ids.map((id) => byId.get(id) ?? new Error(`Author ${id} not found`));
   });
 

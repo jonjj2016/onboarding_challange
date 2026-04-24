@@ -1,10 +1,5 @@
 import styled from '@emotion/styled';
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-} from '@mui/material';
+import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import type { ReactNode } from 'react';
 
@@ -22,13 +17,7 @@ const StyledDialogTitle = styled(DialogTitle)`
   align-items: center;
 `;
 
-export function Modal({
-  isOpen,
-  onClose,
-  title,
-  children,
-  maxWidth = 'sm',
-}: ModalProps) {
+export function Modal({ isOpen, onClose, title, children, maxWidth = 'sm' }: ModalProps) {
   return (
     <Dialog
       open={isOpen}
