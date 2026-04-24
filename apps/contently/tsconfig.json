@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "ignoreDeprecations": "5.0",
+    "baseUrl": "src",
+    "paths": {
+      "lib/*": ["lib/*"],
+      "contexts/*": ["contexts/*"],
+      "modules/*": ["modules/*"],
+      "components/*": ["components/*"],
+      "queries/*": ["queries/*"],
+      "utils/*": ["utils/*"],
+      "stores/*": ["stores/*"],
+      "hooks/*": ["hooks/*"],
+      "pages/*": ["pages/*"],
+      "data/*": ["data/*"],
+      "@contently/toolkit": ["../../packages/toolkit/src/index.ts"],
+      "@contently/toolkit/*": ["../../packages/toolkit/src/*"]
+    }
+  },
+  "include": ["src/**/*", "webpack.config.ts"],
+  "exclude": ["node_modules", "dist"]
+}
