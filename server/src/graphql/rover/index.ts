@@ -2,8 +2,9 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { buildSubgraphSchema } from '@apollo/subgraph';
 import express from 'express';
-import { RoverDataSource } from './RoverDataSource';
+
 import { resolvers } from './resolvers';
+import { RoverDataSource } from './RoverDataSource';
 import { typeDefs } from './typeDefs';
 
 export async function startRoverSubgraph(port: number): Promise<void> {

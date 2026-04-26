@@ -2,9 +2,10 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { buildSubgraphSchema } from '@apollo/subgraph';
 import express from 'express';
-import { VaderDataSource } from './VaderDataSource';
+
 import { resolvers } from './resolvers';
 import { typeDefs } from './typeDefs';
+import { VaderDataSource } from './VaderDataSource';
 
 export async function startVaderSubgraph(port: number): Promise<void> {
   // oxlint-disable-next-line typescript/no-explicit-any

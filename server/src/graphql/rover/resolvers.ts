@@ -1,4 +1,4 @@
-import type { RoverDataSource, Content } from './RoverDataSource';
+import type { Content, RoverDataSource } from './RoverDataSource';
 
 interface RoverContext {
   dataSources: { rover: RoverDataSource };

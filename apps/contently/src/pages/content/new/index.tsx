@@ -1,14 +1,15 @@
-import { Box, Divider, MenuItem, Select, Typography } from '@mui/material';
 import { Controller } from 'react-hook-form';
-import { Button, FormInput } from '@contently/toolkit';
 import { useQuery } from '@apollo/client';
-import { GET_AUTHORS } from 'queries/authors';
+import { Box, Divider, MenuItem, Select, Typography } from '@mui/material';
+
+import { Button, FormInput } from '@contently/toolkit';
 import {
+  ProductPicker,
+  RichTextEditor,
   useContentCreate,
   useSlugCheck,
-  RichTextEditor,
-  ProductPicker,
 } from 'modules/content-edit';
+import { GET_AUTHORS } from 'queries/authors';
 import { useSiteStore } from 'stores/use-site-store';
 
 interface AuthorsResult {

@@ -1,6 +1,7 @@
-import { Select, MenuItem } from '@mui/material';
-import { SITES, useSiteStore } from 'stores/use-site-store';
+import { MenuItem, Select } from '@mui/material';
+
 import type { Site } from 'stores/use-site-store';
+import { SITES, useSiteStore } from 'stores/use-site-store';
 
 const SITE_LABELS: Record<Site, string> = {
   'site-us-cooking': 'US Cooking',

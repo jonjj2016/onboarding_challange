@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
+
 import { useDebounce } from 'hooks/use-debounce';
-import { useSiteStore } from 'stores/use-site-store';
 import { IS_SLUG_AVAILABLE } from 'queries/content';
+import { useSiteStore } from 'stores/use-site-store';
 
 interface SlugCheckResult {
   isAvailable: boolean | null;

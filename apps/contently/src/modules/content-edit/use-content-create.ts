@@ -1,12 +1,13 @@
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import { useAuth } from 'contexts/auth-context';
-import { useSnackbarStore } from 'stores/use-snackbar-store';
-import { useSiteStore } from 'stores/use-site-store';
 import { CREATE_CONTENT, UPDATE_CONTENT_PRODUCTS } from 'queries/content';
+import { useSiteStore } from 'stores/use-site-store';
+import { useSnackbarStore } from 'stores/use-snackbar-store';
 import { slugify } from 'utils/slugify';
 import { contentEditSchema } from './content-edit.schema';
 import type { ContentEditFormValues, ProductItem } from './content-edit.types';

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+
 import type { IAuthRepository, IAuthService, LoginResult } from './auth.interface';
 import type { JWTPayload, UserResponseDto } from './dto';
 

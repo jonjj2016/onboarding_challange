@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
-import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 import type { ReactNode } from 'react';
+import styled from '@emotion/styled';
+import CloseIcon from '@mui/icons-material/Close';
+import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 
 export interface ModalProps {
   isOpen: boolean;

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+
 import { Loading } from '../components/loading/loading';
 
 describe('Loading', () => {

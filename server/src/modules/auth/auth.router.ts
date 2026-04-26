@@ -1,8 +1,9 @@
 import { Router } from 'express';
+
 import { AuthController } from './auth.controller';
+import { requireAuth } from './auth.middleware';
 import { InMemoryAuthRepository } from './auth.repository';
 import { AuthService } from './auth.service';
-import { requireAuth } from './auth.middleware';
 
 const repository = new InMemoryAuthRepository();
 const service = new AuthService(repository);

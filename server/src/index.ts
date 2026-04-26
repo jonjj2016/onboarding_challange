@@ -1,14 +1,14 @@
-/// <reference path="./types.d.ts" /> // oxlint-disable-line typescript/triple-slash-reference
+import { ApolloGateway, IntrospectAndCompose } from '@apollo/gateway';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-import { ApolloGateway, IntrospectAndCompose } from '@apollo/gateway';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 import path from 'path';
-import { authRouter, extractToken } from './modules/auth';
+
 import { startRoverSubgraph } from './graphql/rover';
 import { startVaderSubgraph } from './graphql/vader';
+import { authRouter, extractToken } from './modules/auth';
 
 async function main() {
   await startRoverSubgraph(4010);

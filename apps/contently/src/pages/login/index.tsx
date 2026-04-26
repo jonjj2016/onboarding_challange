@@ -1,4 +1,5 @@
 import { Box, Paper, Typography } from '@mui/material';
+
 import { LoginForm, useLogin } from 'modules/auth';
 
 export default function LoginPage() {

@@ -1,5 +1,6 @@
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
+
 import { useAuth } from 'contexts/auth-context';
 import { routes } from 'data/routes';
 import SiteSwitcher from './site-switcher';
