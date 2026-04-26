@@ -13,6 +13,8 @@ module.exports = {
     '^stores/(.*)$': '<rootDir>/src/stores/$1',
     '^utils/(.*)$': '<rootDir>/src/utils/$1',
     '^hooks/(.*)$': '<rootDir>/src/hooks/$1',
+    '^providers$': '<rootDir>/src/providers/index.tsx',
+    '^providers/(.*)$': '<rootDir>/src/providers/$1',
     '\\.(css|less|scss)$': '<rootDir>/__mocks__/style-mock.js',
   },
   testMatch: ['<rootDir>/src/__tests__/**/*.test.ts'],

@@ -24,6 +24,8 @@
       "pages/*": ["./src/pages/*"],
       "data/*": ["./src/data/*"],
       "layouts/*": ["./src/layouts/*"],
+      "providers": ["./src/providers/index.tsx"],
+      "providers/*": ["./src/providers/*"],
       "@contently/toolkit": ["../../packages/toolkit/src/index.ts"],
       "@contently/toolkit/*": ["../../packages/toolkit/src/*"]
     }
