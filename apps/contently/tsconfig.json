@@ -11,6 +11,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
+    "types": ["jest", "@testing-library/jest-dom"],
     "paths": {
       "lib/*": ["./src/lib/*"],
       "contexts/*": ["./src/contexts/*"],
