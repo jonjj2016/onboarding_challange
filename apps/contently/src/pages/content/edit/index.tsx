@@ -2,11 +2,9 @@ import { useEffect } from 'react';
 import { Controller } from 'react-hook-form';
 import { useBlocker } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Box, CircularProgress, Divider, MenuItem, Select, Typography } from '@mui/material';
+import { Box, Divider, MenuItem, Select, Typography } from '@mui/material';
 
-import { FormInput } from '@contently/toolkit';
-import { Modal } from '@contently/toolkit';
-import { Button } from '@contently/toolkit';
+import { Button, FormInput, Loading, Modal } from '@contently/toolkit';
 import {
   ContentToolbar,
   ProductPicker,
@@ -61,11 +59,7 @@ export default function ContentEditPage() {
   }, [blocker, isDirty]);
 
   if (isLoadingContent) {
-    return (
-      <Box display="flex" justifyContent="center" py={8}>
-        <CircularProgress />
-      </Box>
-    );
+    return <Loading isCentered />;
   }
 
   const slugError =

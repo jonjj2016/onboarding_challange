@@ -7,6 +7,7 @@ type ButtonVariant = 'primary' | 'secondary' | 'danger';
 export interface ButtonProps extends Omit<MuiButtonProps, 'variant' | 'color'> {
   variant?: ButtonVariant;
   isLoading?: boolean;
+  to?: string;
 }
 
 const variantMap: Record<ButtonVariant, Pick<MuiButtonProps, 'variant' | 'color'>> = {

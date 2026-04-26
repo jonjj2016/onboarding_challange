@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
-import { Box, CircularProgress } from '@mui/material';
 
+import { Loading } from '@contently/toolkit';
 import RequireAuth from 'components/require-auth';
 
 const LoginPage = lazy(() => import('pages/login'));
@@ -10,16 +10,8 @@ const ContentListPage = lazy(() => import('pages/content/list'));
 const ContentEditPage = lazy(() => import('pages/content/edit'));
 const ContentNewPage = lazy(() => import('pages/content/new'));
 
-function PageLoader() {
-  return (
-    <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-      <CircularProgress />
-    </Box>
-  );
-}
-
 function S({ children }: { children: React.ReactNode }) {
-  return <Suspense fallback={<PageLoader />}>{children}</Suspense>;
+  return <Suspense fallback={<Loading isCentered />}>{children}</Suspense>;
 }
 
 const router = createBrowserRouter([
