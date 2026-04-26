@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
-import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
-import { FormInput } from '@contently/toolkit';
+import { FormInput, FormSelect } from '@contently/toolkit';
 import { GET_AUTHORS } from 'queries/authors';
 import type { SortOption } from './content-list.types';
 import { SORT_OPTIONS, STATUS_FILTER_OPTIONS } from './content-list.types';
@@ -56,43 +56,32 @@ export default function ContentFilters({
         size="small"
       />
 
-      <FormControl fullWidth size="small">
-        <InputLabel>Status</InputLabel>
-        <Select label="Status" value={status} onChange={(e) => onStatusChange(e.target.value)}>
-          {STATUS_FILTER_OPTIONS.map((opt) => (
-            <MenuItem key={opt.value} value={opt.value}>
-              {opt.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <FormSelect
+        label="Status"
+        value={status}
+        onChange={onStatusChange}
+        options={STATUS_FILTER_OPTIONS}
+        size="small"
+      />
 
-      <FormControl fullWidth size="small">
-        <InputLabel>Author</InputLabel>
-        <Select label="Author" value={authorId} onChange={(e) => onAuthorChange(e.target.value)}>
-          <MenuItem value="">All authors</MenuItem>
-          {authors.map((a) => (
-            <MenuItem key={a.id} value={a.id}>
-              {a.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <FormSelect
+        label="Author"
+        value={authorId}
+        onChange={onAuthorChange}
+        options={[
+          { value: '', label: 'All authors' },
+          ...authors.map((a) => ({ value: a.id, label: a.name })),
+        ]}
+        size="small"
+      />
 
-      <FormControl fullWidth size="small">
-        <InputLabel>Sort</InputLabel>
-        <Select
-          label="Sort"
-          value={sort}
-          onChange={(e) => onSortChange(e.target.value as SortOption)}
-        >
-          {SORT_OPTIONS.map((opt) => (
-            <MenuItem key={opt.value} value={opt.value}>
-              {opt.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <FormSelect
+        label="Sort"
+        value={sort}
+        onChange={(val) => onSortChange(val as SortOption)}
+        options={SORT_OPTIONS}
+        size="small"
+      />
     </Box>
   );
 }

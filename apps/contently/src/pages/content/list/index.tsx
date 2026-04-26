@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Box, Button, Divider, Pagination, Skeleton, Typography } from '@mui/material';
+import { Box, Divider, Pagination, Skeleton, Typography } from '@mui/material';
 
+import { Button } from '@contently/toolkit';
 import { routes } from 'data/routes';
 import { ContentCard, ContentFilters, PAGE_SIZE, useContentList } from 'modules/content-list';
 
@@ -54,7 +55,7 @@ export default function ContentListPage() {
               </Typography>
             )}
           </Typography>
-          <Button variant="contained" component={Link} to={routes.contentNew}>
+          <Button variant="primary" component={Link} to={routes.contentNew}>
             New content
           </Button>
         </Box>

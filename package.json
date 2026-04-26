@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "dev": "docker compose up",
+    "contently": "npm start --workspace=apps/contently",
     "test:ci": "npm run test --workspace=apps/contently && npm run test --workspace=packages/toolkit",
     "test": "npm run test:ci",
     "prepare": "husky",

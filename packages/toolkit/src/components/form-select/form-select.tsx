@@ -15,6 +15,7 @@ export interface FormSelectProps {
   options: SelectOption[] | (() => Promise<SelectOption[]>);
   error?: string;
   isDisabled?: boolean;
+  size?: 'small' | 'medium';
 }
 
 export function FormSelect({
@@ -24,6 +25,7 @@ export function FormSelect({
   options,
   error,
   isDisabled = false,
+  size = 'medium',
 }: FormSelectProps) {
   const [resolvedOptions, setResolvedOptions] = useState<SelectOption[]>(
     Array.isArray(options) ? options : [],
@@ -42,7 +44,7 @@ export function FormSelect({
   const labelId = `form-select-${label.toLowerCase().replace(/\s+/g, '-')}`;
 
   return (
-    <FormControl fullWidth error={!!error} disabled={isDisabled || isLoading}>
+    <FormControl fullWidth size={size} error={!!error} disabled={isDisabled || isLoading}>
       <InputLabel id={labelId}>{label}</InputLabel>
       <Select
         labelId={labelId}
