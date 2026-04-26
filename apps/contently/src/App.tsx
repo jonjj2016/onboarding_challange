@@ -10,9 +10,9 @@ import { theme } from 'lib/theme';
 // Lazy-loaded pages — each becomes its own JS chunk
 const LoginPage = lazy(() => import('pages/login'));
 const AppLayout = lazy(() => import('layouts/app-layout'));
-const ContentListPage = lazy(() => import('pages/content-list'));
-const ContentEditPage = lazy(() => import('pages/content-edit'));
-const ContentNewPage = lazy(() => import('pages/content-new'));
+const ContentListPage = lazy(() => import('pages/content/list'));
+const ContentEditPage = lazy(() => import('pages/content/edit'));
+const ContentNewPage = lazy(() => import('pages/content/new'));
 
 function PageLoader() {
   return (
