@@ -4,3 +4,4 @@ build
 coverage
 .storybook
 *.min.js
+storybook-static

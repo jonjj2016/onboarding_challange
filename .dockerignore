@@ -1,0 +1,14 @@
+node_modules
+.git
+*.md
+apps/contently/dist
+apps/contently/node_modules
+packages/toolkit/node_modules
+packages/toolkit/dist
+server/node_modules
+server/dist
+mock-services/rover-mock/node_modules
+mock-services/rover-mock/dist
+mock-services/vader-mock/node_modules
+mock-services/vader-mock/dist
+storybook-static

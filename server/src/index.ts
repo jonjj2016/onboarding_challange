@@ -5,6 +5,7 @@ import { ApolloGateway, IntrospectAndCompose } from '@apollo/gateway';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
+import path from 'path';
 import { authRouter, extractToken } from './modules/auth';
 import { startRoverSubgraph } from './graphql/rover';
 import { startVaderSubgraph } from './graphql/vader';
@@ -40,6 +41,15 @@ async function main() {
     express.json(),
     expressMiddleware(server),
   );
+
+  // Serve the built React app — only present in Docker (multi-stage build)
+  const publicDir = path.join(__dirname, '..', 'public');
+  app.use(express.static(publicDir));
+
+  // SPA fallback: any non-API route returns index.html so React Router handles it
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(publicDir, 'index.html'));
+  });
 
   const PORT = Number(process.env.PORT) || 8080;
   app.listen(PORT, () => {

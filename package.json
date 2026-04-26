@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "dev": "docker compose up",
-    "test": "npm run test --workspaces",
+    "test:ci": "npm run test --workspace=apps/contently && npm run test --workspace=packages/toolkit",
+    "test": "npm run test:ci",
     "prepare": "husky",
     "lint:oxlint": "oxlint --config oxlint.json apps/contently/src packages/toolkit/src",
     "lint:eslint": "eslint apps/contently/src server/src packages/toolkit/src",

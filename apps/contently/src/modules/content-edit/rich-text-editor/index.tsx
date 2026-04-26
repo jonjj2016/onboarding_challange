@@ -157,6 +157,8 @@ interface RichTextEditorProps {
 
 export function RichTextEditor({ value, onChange, error }: RichTextEditorProps) {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+
+  // oxlint-disable-next-line react-hooks/exhaustive-deps -- intentional: editor initialises once
   const initialValue = useMemo(() => deserializeFromHtml(value) as Descendant[], []);
   const [editorValue, setEditorValue] = useState<Descendant[]>(initialValue);
 
