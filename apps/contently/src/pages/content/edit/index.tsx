@@ -1,13 +1,5 @@
 import { useEffect } from 'react';
-import {
-  Box,
-  CircularProgress,
-  Divider,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, CircularProgress, Divider, MenuItem, Select, Typography } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { useBlocker } from 'react-router-dom';
 import { FormInput } from '@contently/toolkit';
@@ -131,19 +123,24 @@ export default function ContentEditPage() {
           <Typography variant="body2" color="text.secondary" mb={0.5}>
             Body
           </Typography>
-          <Controller
-            name="body"
-            control={control}
-            render={({ field }) => (
-              // Key on content ID so editor re-mounts when navigating between content items
-              <RichTextEditor
-                key={contentId}
-                value={field.value}
-                onChange={field.onChange}
-                error={errors.body?.message}
-              />
-            )}
-          />
+          {/* Only mount the editor once content.body is available.
+              field.value may be '' on first render due to React 18 batching
+              the Apollo update and RHF reset separately — content.body is
+              the source of truth for initialization. */}
+          {content && (
+            <Controller
+              name="body"
+              control={control}
+              render={({ field }) => (
+                <RichTextEditor
+                  key={content.id}
+                  value={content.body}
+                  onChange={field.onChange}
+                  error={errors.body?.message}
+                />
+              )}
+            />
+          )}
         </Box>
 
         <Divider />
