@@ -23,13 +23,14 @@ describe('Modal', () => {
   });
 
   it('calls onClose when close button is clicked', async () => {
+    const user = userEvent.setup();
     const handleClose = jest.fn();
     render(
       <Modal isOpen onClose={handleClose} title="Confirm">
         Content
       </Modal>,
     );
-    await userEvent.click(screen.getByLabelText('close'));
+    await user.click(screen.getByLabelText('close'));
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 });

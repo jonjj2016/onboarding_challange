@@ -14,9 +14,10 @@ describe('FormInput', () => {
   });
 
   it('accepts user input', async () => {
+    const user = userEvent.setup();
     const handleChange = jest.fn();
     render(<FormInput label="Title" onChange={handleChange} />);
-    await userEvent.type(screen.getByLabelText('Title'), 'Hello');
+    await user.type(screen.getByLabelText('Title'), 'Hello');
     expect(handleChange).toHaveBeenCalled();
   });
 });

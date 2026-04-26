@@ -9,4 +9,6 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|scss)$': '<rootDir>/__mocks__/style-mock.js',
   },
+  // MUI + userEvent async interactions deadlock when workers share the jsdom event loop
+  maxWorkers: 1,
 };
