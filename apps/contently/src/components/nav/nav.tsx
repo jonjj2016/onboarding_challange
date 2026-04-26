@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 
+import { AppBar, Box, Button, Toolbar, Typography } from '@contently/toolkit';
 import { useAuth } from 'contexts/auth-context';
 import { routes } from 'data/routes';
 import SiteSwitcher from './site-switcher';
@@ -21,7 +21,7 @@ export default function Nav() {
           Contently
         </Typography>
 
-        <Button component={Link} to={routes.content} color="inherit">
+        <Button variant="ghost" component={Link} to={routes.content}>
           Content
         </Button>
 
@@ -33,7 +33,7 @@ export default function Nav() {
           {user?.name}
         </Typography>
 
-        <Button color="inherit" size="small" onClick={logout}>
+        <Button variant="ghost" size="small" onClick={logout}>
           Sign out
         </Button>
       </Toolbar>

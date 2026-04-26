@@ -1,7 +1,6 @@
 import type { UseFormReturn } from 'react-hook-form';
-import { Alert, Box } from '@mui/material';
 
-import { Button, FormInput } from '@contently/toolkit';
+import { Alert, Box, Button, FormInput } from '@contently/toolkit';
 import type { LoginFormValues } from './auth.types';
 
 interface LoginFormProps {

@@ -1,8 +1,7 @@
 import { Controller } from 'react-hook-form';
 import { useQuery } from '@apollo/client';
-import { Box, Divider, MenuItem, Select, Typography } from '@mui/material';
 
-import { Button, FormInput } from '@contently/toolkit';
+import { Box, Button, Divider, FormInput, FormSelect, Typography } from '@contently/toolkit';
 import {
   ProductPicker,
   RichTextEditor,
@@ -24,6 +23,7 @@ export default function ContentNewPage() {
   const {
     control,
     watch,
+    setValue,
     formState: { errors, isValid },
   } = form;
 
@@ -78,25 +78,17 @@ export default function ContentNewPage() {
           helperText={isChecking ? 'Checking…' : isAvailable === true ? '✓ Available' : undefined}
         />
 
-        <Box>
-          <Typography variant="body2" color="text.secondary" mb={0.5}>
-            Author
-          </Typography>
-          <Controller
-            name="authorId"
-            control={control}
-            render={({ field }) => (
-              <Select {...field} fullWidth size="small" error={!!errors.authorId}>
-                <MenuItem value="">Select author…</MenuItem>
-                {authors.map((a) => (
-                  <MenuItem key={a.id} value={a.id}>
-                    {a.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            )}
-          />
-        </Box>
+        <FormSelect
+          label="Author"
+          value={watch('authorId')}
+          onChange={(val) => setValue('authorId', val, { shouldValidate: true })}
+          options={[
+            { value: '', label: 'Select author…' },
+            ...authors.map((a) => ({ value: a.id, label: a.name })),
+          ]}
+          error={errors.authorId?.message}
+          size="small"
+        />
 
         <Divider />
 

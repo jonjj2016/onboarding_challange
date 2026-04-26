@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client';
-import { Box, Typography } from '@mui/material';
 
-import { FormInput, FormSelect } from '@contently/toolkit';
+import { Box, FormInput, FormSelect, Typography } from '@contently/toolkit';
 import { GET_AUTHORS } from 'queries/authors';
 import type { SortOption } from './content-list.types';
 import { SORT_OPTIONS, STATUS_FILTER_OPTIONS } from './content-list.types';

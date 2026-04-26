@@ -15,9 +15,8 @@ import {
   useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Box, Chip, Typography } from '@mui/material';
 
-import { FormAutocomplete } from '@contently/toolkit';
+import { Box, Chip, FormAutocomplete, Typography } from '@contently/toolkit';
 import { GET_PRODUCTS } from 'queries/products';
 import type { ProductItem } from './content-edit.types';
 

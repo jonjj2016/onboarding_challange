@@ -1,6 +1,5 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
-import { Box, FormHelperText } from '@mui/material';
 import {
   type BaseEditor,
   createEditor,
@@ -12,6 +11,7 @@ import {
 import { type HistoryEditor, withHistory } from 'slate-history';
 import { Editable, type ReactEditor, Slate, withReact } from 'slate-react';
 
+import { Box, FormHelperText } from '@contently/toolkit';
 import { deserializeFromHtml, serializeToHtml } from './html-utils';
 import { EditorToolbar } from './toolbar';
 

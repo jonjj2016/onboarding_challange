@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { Box, Card, CardActionArea, Chip, Typography } from '@mui/material';
 
+import { Box, Card, CardActionArea, Chip, Typography } from '@contently/toolkit';
 import type { ContentListItem } from './content-list.types';
 import { STATUS_CONFIG } from './content-list.types';
 

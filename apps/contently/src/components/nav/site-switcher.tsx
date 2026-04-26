@@ -1,5 +1,4 @@
-import { MenuItem, Select } from '@mui/material';
-
+import { MenuItem, Select } from '@contently/toolkit';
 import type { Site } from 'stores/use-site-store';
 import { SITES, useSiteStore } from 'stores/use-site-store';
 
