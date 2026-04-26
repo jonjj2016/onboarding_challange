@@ -7,7 +7,7 @@ import { resolvers } from './resolvers';
 import { typeDefs } from './typeDefs';
 
 export async function startRoverSubgraph(port: number): Promise<void> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // oxlint-disable-next-line typescript/no-explicit-any
   const schema = buildSubgraphSchema({ typeDefs, resolvers: resolvers as any });
   const server = new ApolloServer({ schema });
   await server.start();

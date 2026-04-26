@@ -1,4 +1,16 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+echo "Running pre-commit checks..."
+
+# Step 1: Auto-fix staged files (prettier + oxlint --fix + eslint --fix)
 npx lint-staged
+
+# Step 2: Verify full codebase — lint:oxlint + lint:eslint + lint:format
+npm run lint:check
+
+# Step 3: TypeScript — zero errors across all packages
+npm run type-check
+
+# Step 4: All 31 tests must pass
+npm run test:ci

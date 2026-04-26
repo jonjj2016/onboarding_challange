@@ -23,8 +23,8 @@ function serializeNode(node: Descendant): string {
   }
 
   const children = node.children.map(serializeNode).join('');
-   
-  switch ((node as any).type) {
+
+  switch ((node as unknown as { type: string }).type) {
     case 'h2':
       return `<h2>${children}</h2>`;
     case 'ul':

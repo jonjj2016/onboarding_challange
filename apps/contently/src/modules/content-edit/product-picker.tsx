@@ -15,7 +15,7 @@ import {
   arrayMove,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { FormAutocomplete } from '@contently/toolkit';
 import { GET_PRODUCTS } from 'queries/products';
 import type { ProductItem } from './content-edit.types';
@@ -64,17 +64,18 @@ interface ProductPickerProps {
 export function ProductPicker({ value, onChange }: ProductPickerProps) {
   const sensors = useSensors(useSensor(PointerSensor));
 
-  const { refetch } = useQuery<ProductsQueryResult>(GET_PRODUCTS, {
-    variables: { pageSize: 10 },
-    skip: true,
+  const [fetchProducts] = useLazyQuery<ProductsQueryResult>(GET_PRODUCTS, {
+    fetchPolicy: 'network-only',
   });
 
   const loadOptions = useCallback(
     async (search: string) => {
-      const result = await refetch({ search: search || undefined, pageSize: 20 });
+      const result = await fetchProducts({
+        variables: { search: search || undefined, pageSize: 20 },
+      });
       return result.data?.products.data ?? [];
     },
-    [refetch],
+    [fetchProducts],
   );
 
   const handleSelect = (selected: ProductItem[]) => {

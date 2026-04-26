@@ -10,16 +10,21 @@
   ],
   "scripts": {
     "dev": "docker compose up",
-    "test": "npm run test --workspaces",
+    "test:ci": "npm run test --workspace=apps/contently && npm run test --workspace=packages/toolkit",
+    "test": "npm run test:ci",
     "prepare": "husky",
     "lint:oxlint": "oxlint --config oxlint.json apps/contently/src packages/toolkit/src",
     "lint:eslint": "eslint apps/contently/src server/src packages/toolkit/src",
     "lint:format": "prettier --check .",
     "lint:check": "npm run lint:oxlint && npm run lint:eslint && npm run lint:format",
     "lint:fix": "prettier --write . && oxlint --fix apps/contently/src server/src packages/toolkit/src && eslint --fix apps/contently/src server/src packages/toolkit/src",
-    "type-check": "tsc --noEmit -p apps/contently/tsconfig.json && tsc --noEmit -p server/tsconfig.json && tsc --noEmit -p packages/toolkit/tsconfig.json"
+    "type-check": "tsc --noEmit -p apps/contently/tsconfig.json && tsc --noEmit -p server/tsconfig.json && tsc --noEmit -p packages/toolkit/tsconfig.json",
+    "test:e2e": "npx playwright test",
+    "test:e2e:ui": "npx playwright test --ui",
+    "test:e2e:headed": "npx playwright test --headed"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@typescript-eslint/eslint-plugin": "^8.59.0",
     "@typescript-eslint/parser": "^8.59.0",
     "eslint": "^9.39.4",
