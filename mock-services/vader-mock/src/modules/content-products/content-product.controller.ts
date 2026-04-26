@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+
 import type {
   IContentProductController,
   IContentProductService,
@@ -6,6 +7,16 @@ import type {
 
 export class ContentProductController implements IContentProductController {
   constructor(private readonly service: IContentProductService) {}
+
+  async searchContentIds(req: Request, res: Response): Promise<void> {
+    const search = (req.query['search'] as string | undefined)?.trim();
+    if (!search) {
+      res.status(400).json({ error: 'search query parameter is required' });
+      return;
+    }
+    const contentIds = await this.service.getContentIdsByProductSearch(search);
+    res.json({ data: contentIds, meta: {} });
+  }
 
   async list(req: Request, res: Response): Promise<void> {
     const contentIdIn = req.query['content_id:in'] as string | undefined;

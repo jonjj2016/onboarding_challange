@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
-import type { CreateContentDto, UpdateContentDto } from './dto';
+
 import type { IContentController, IContentService } from './content.interface';
+import type { CreateContentDto, UpdateContentDto } from './dto';
 
 export class ContentController implements IContentController {
   constructor(private readonly service: IContentService) {}
@@ -15,6 +16,7 @@ export class ContentController implements IContentController {
       return;
     }
 
+    const contentIdsParam = req.query['content_ids'] as string | undefined;
     const query = {
       page: Math.max(1, Number(req.query['page']) || 1),
       pageSize: Math.min(100, Math.max(1, Number(req.query['page_size']) || 10)),
@@ -24,6 +26,7 @@ export class ContentController implements IContentController {
       authorId: req.query['author_id'] as string | undefined,
       site: req.query['site'] as string | undefined,
       sort: (req.query['sort'] as string | undefined) || 'updated_desc',
+      idIn: contentIdsParam ? contentIdsParam.split(',').filter(Boolean) : undefined,
     };
 
     const { data, total } = await this.service.list(query);

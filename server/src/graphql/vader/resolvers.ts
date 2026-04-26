@@ -11,6 +11,12 @@ export const resolvers = {
     product: (_: unknown, { id }: { id: string }, { dataSources }: VaderContext) =>
       dataSources.vader.getProduct(id),
 
+    contentIdsByProductSearch: (
+      _: unknown,
+      { search }: { search: string },
+      { dataSources }: VaderContext,
+    ) => dataSources.vader.getContentIdsByProductSearch(search),
+
     products: (
       _: unknown,
       args: { page?: number; pageSize?: number; search?: string },

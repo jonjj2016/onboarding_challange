@@ -47,8 +47,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
 
     if (!res.ok) {
-      const { error } = (await res.json()) as { error: string };
-      throw new Error(error);
+      let message = 'Login failed';
+      try {
+        const body = (await res.json()) as { error: string };
+        message = body.error;
+      } catch {
+        message = (await res.text().catch(() => '')) || 'Login failed';
+      }
+      throw new Error(message);
     }
 
     // Spec: POST /api/login → GET /api/me → store user

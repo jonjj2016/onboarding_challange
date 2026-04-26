@@ -1,10 +1,22 @@
 import type { Pool } from 'pg';
+
 import type { ProductDto } from '../products/dto';
-import type { ProductsByContentDto } from './dto';
 import type { IContentProductRepository } from './content-product.interface';
+import type { ProductsByContentDto } from './dto';
 
 export class ContentProductRepository implements IContentProductRepository {
   constructor(private readonly pool: Pool) {}
+
+  async findContentIdsByProductSearch(search: string): Promise<string[]> {
+    const { rows } = await this.pool.query<{ content_id: string }>(
+      `SELECT DISTINCT cp.content_id
+       FROM contents_products cp
+       JOIN products p ON p.id = cp.product_id
+       WHERE p.name ILIKE $1`,
+      [`%${search}%`],
+    );
+    return rows.map((r) => r.content_id);
+  }
 
   async findByContentIds(contentIds: string[]): Promise<ProductsByContentDto[]> {
     const { rows } = await this.pool.query<ProductDto & { content_id: string; position: number }>(

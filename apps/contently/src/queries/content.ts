@@ -1,5 +1,11 @@
 import { gql } from '@apollo/client';
 
+export const GET_CONTENT_IDS_BY_PRODUCT_SEARCH = gql`
+  query GET_CONTENT_IDS_BY_PRODUCT_SEARCH($search: String!) {
+    contentIdsByProductSearch(search: $search)
+  }
+`;
+
 export const GET_CONTENTS = gql`
   query GET_CONTENTS(
     $site: String!
@@ -9,6 +15,7 @@ export const GET_CONTENTS = gql`
     $status: Int
     $authorId: ID
     $sort: String
+    $contentIds: [ID]
   ) {
     contents(
       site: $site
@@ -18,6 +25,7 @@ export const GET_CONTENTS = gql`
       status: $status
       authorId: $authorId
       sort: $sort
+      contentIds: $contentIds
     ) {
       data {
         id

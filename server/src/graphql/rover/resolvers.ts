@@ -22,6 +22,7 @@ export const resolvers = {
         authorId?: string;
         site?: string;
         sort?: string;
+        contentIds?: string[];
       },
       { dataSources }: RoverContext,
     ) => {
@@ -33,6 +34,7 @@ export const resolvers = {
       if (args.authorId) params['author_id'] = args.authorId;
       if (args.site) params['site'] = args.site;
       if (args.sort) params['sort'] = args.sort;
+      if (args.contentIds?.length) params['content_ids'] = args.contentIds.join(',');
       return dataSources.rover.getContents(params);
     },
 

@@ -63,6 +63,13 @@ export class VaderDataSource extends RESTDataSource {
     return convertKeysToCamel<Product>(res.data);
   }
 
+  async getContentIdsByProductSearch(search: string): Promise<string[]> {
+    const res = await this.get<{ data: string[] }>('/v2/content-products/search-content-ids', {
+      params: { search },
+    });
+    return res.data;
+  }
+
   async getProducts(params: Record<string, string>): Promise<{ data: Product[]; meta: PageMeta }> {
     const res = await this.get<Envelope<Record<string, unknown>[]>>('/v2/products', { params });
     const meta = res.meta as RawMeta;
