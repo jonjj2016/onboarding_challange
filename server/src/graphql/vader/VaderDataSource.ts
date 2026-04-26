@@ -1,5 +1,6 @@
 import { RESTDataSource } from '@apollo/datasource-rest';
 import DataLoader from 'dataloader';
+
 import { convertKeysToCamel } from '../../utils/caseConvert';
 
 interface RawMeta {
@@ -60,6 +61,13 @@ export class VaderDataSource extends RESTDataSource {
   async getProduct(id: string): Promise<Product> {
     const res = await this.get<Envelope<Record<string, unknown>>>(`/v2/products/${id}`);
     return convertKeysToCamel<Product>(res.data);
+  }
+
+  async getContentIdsByProductSearch(search: string): Promise<string[]> {
+    const res = await this.get<{ data: string[] }>('/v2/content-products/search-content-ids', {
+      params: { search },
+    });
+    return res.data;
   }
 
   async getProducts(params: Record<string, string>): Promise<{ data: Product[]; meta: PageMeta }> {

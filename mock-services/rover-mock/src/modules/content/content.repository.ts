@@ -1,19 +1,31 @@
 import type { Pool } from 'pg';
+
 import { ContentStatus } from '../../types';
-import type { ContentDto, ContentListQueryDto, CreateContentDto, UpdateContentDto } from './dto';
 import type { IContentRepository, PaginatedResult } from './content.interface';
+import type { ContentDto, ContentListQueryDto, CreateContentDto, UpdateContentDto } from './dto';
 
 export class ContentRepository implements IContentRepository {
   constructor(private readonly pool: Pool) {}
 
   async findMany(query: ContentListQueryDto): Promise<PaginatedResult<ContentDto>> {
-    const { page, pageSize, search, slug, status, authorId, site, sort } = query;
+    const { page, pageSize, search, slug, status, authorId, site, sort, idIn } = query;
     const conditions: string[] = [];
     const params: unknown[] = [];
 
-    if (search) {
+    if (search && idIn?.length) {
+      params.push(`%${search}%`);
+      const searchIdx = params.length;
+      params.push(idIn);
+      const idInIdx = params.length;
+      conditions.push(
+        `((title ILIKE $${searchIdx} OR body ILIKE $${searchIdx}) OR id = ANY($${idInIdx}::uuid[]))`,
+      );
+    } else if (search) {
       params.push(`%${search}%`);
       conditions.push(`(title ILIKE $${params.length} OR body ILIKE $${params.length})`);
+    } else if (idIn?.length) {
+      params.push(idIn);
+      conditions.push(`id = ANY($${params.length}::uuid[])`);
     }
     if (slug) {
       params.push(slug);

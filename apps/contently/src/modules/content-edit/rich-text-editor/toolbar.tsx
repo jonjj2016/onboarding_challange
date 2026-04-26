@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
-import { Box, Divider, IconButton, Tooltip } from '@mui/material';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
-import TitleIcon from '@mui/icons-material/Title';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import { useSlateEditor, isMarkActive, toggleMark, isBlockActive, toggleBlock } from './index';
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import TitleIcon from '@mui/icons-material/Title';
+import { Box, Divider, IconButton, Tooltip } from '@mui/material';
+
+import { isBlockActive, isMarkActive, toggleBlock, toggleMark, useSlateEditor } from './index';
 
 const ToolbarWrapper = styled(Box)`
   display: flex;

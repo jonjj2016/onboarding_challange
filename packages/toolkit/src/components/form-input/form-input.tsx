@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import styled from '@emotion/styled';
-import { TextField, Typography } from '@mui/material';
 import type { TextFieldProps } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 
 export interface FormInputProps extends Omit<TextFieldProps, 'error' | 'helperText'> {
   label: string;

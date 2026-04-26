@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
-import { Box, CircularProgress, Divider, MenuItem, Select, Typography } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { useBlocker } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { Box, CircularProgress, Divider, MenuItem, Select, Typography } from '@mui/material';
+
 import { FormInput } from '@contently/toolkit';
 import { Modal } from '@contently/toolkit';
 import { Button } from '@contently/toolkit';
@@ -12,7 +14,6 @@ import {
   useContentEdit,
   useSlugCheck,
 } from 'modules/content-edit';
-import { useQuery } from '@apollo/client';
 import { GET_AUTHORS } from 'queries/authors';
 
 interface AuthorsResult {

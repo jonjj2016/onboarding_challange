@@ -1,11 +1,12 @@
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { useSiteStore } from 'stores/use-site-store';
+
 import { useDebounce } from 'hooks/use-debounce';
-import { GET_CONTENTS } from 'queries/content';
-import { PAGE_SIZE } from './content-list.types';
+import { GET_CONTENT_IDS_BY_PRODUCT_SEARCH, GET_CONTENTS } from 'queries/content';
+import { useSiteStore } from 'stores/use-site-store';
 import type { ContentListItem, SortOption } from './content-list.types';
+import { PAGE_SIZE } from './content-list.types';
 
 interface ContentsQueryResult {
   contents: {
@@ -42,6 +43,13 @@ export function useContentList(): UseContentListReturn {
 
   const debouncedSearch = useDebounce(search, 500);
 
+  const { data: productSearchData } = useQuery<{ contentIdsByProductSearch: string[] }>(
+    GET_CONTENT_IDS_BY_PRODUCT_SEARCH,
+    { variables: { search: debouncedSearch }, skip: !debouncedSearch },
+  );
+
+  const productMatchedIds = productSearchData?.contentIdsByProductSearch ?? [];
+
   const { data, loading } = useQuery<ContentsQueryResult>(GET_CONTENTS, {
     variables: {
       site: activeSite,
@@ -51,6 +59,7 @@ export function useContentList(): UseContentListReturn {
       status: status ? Number(status) : undefined,
       authorId: authorId || undefined,
       sort,
+      contentIds: debouncedSearch && productMatchedIds.length ? productMatchedIds : undefined,
     },
   });
 

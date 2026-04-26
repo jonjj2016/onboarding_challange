@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { FormInput } from '../components/form-input/form-input';
 
 describe('FormInput', () => {
@@ -14,9 +15,10 @@ describe('FormInput', () => {
   });
 
   it('accepts user input', async () => {
+    const user = userEvent.setup();
     const handleChange = jest.fn();
     render(<FormInput label="Title" onChange={handleChange} />);
-    await userEvent.type(screen.getByLabelText('Title'), 'Hello');
+    await user.type(screen.getByLabelText('Title'), 'Hello');
     expect(handleChange).toHaveBeenCalled();
   });
 });

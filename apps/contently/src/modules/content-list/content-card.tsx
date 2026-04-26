@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Box, Card, CardActionArea, Chip, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { STATUS_CONFIG } from './content-list.types';
+
 import type { ContentListItem } from './content-list.types';
+import { STATUS_CONFIG } from './content-list.types';
 
 interface ContentCardProps {
   content: ContentListItem;

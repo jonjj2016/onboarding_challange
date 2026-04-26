@@ -1,8 +1,9 @@
-import {
-  serializeToHtml,
-  deserializeFromHtml,
-} from '../modules/content-edit/rich-text-editor/html-utils';
 import type { Descendant } from 'slate';
+
+import {
+  deserializeFromHtml,
+  serializeToHtml,
+} from '../modules/content-edit/rich-text-editor/html-utils';
 
 describe('serializeToHtml', () => {
   it('serializes a paragraph', () => {

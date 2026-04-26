@@ -1,21 +1,22 @@
 import { useCallback } from 'react';
-import { Box, Chip, Typography } from '@mui/material';
+import { useLazyQuery } from '@apollo/client';
 import {
-  DndContext,
   closestCenter,
+  DndContext,
+  type DragEndEvent,
   PointerSensor,
   useSensor,
   useSensors,
-  type DragEndEvent,
 } from '@dnd-kit/core';
 import {
-  SortableContext,
-  horizontalListSortingStrategy,
-  useSortable,
   arrayMove,
+  horizontalListSortingStrategy,
+  SortableContext,
+  useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { useLazyQuery } from '@apollo/client';
+import { Box, Chip, Typography } from '@mui/material';
+
 import { FormAutocomplete } from '@contently/toolkit';
 import { GET_PRODUCTS } from 'queries/products';
 import type { ProductItem } from './content-edit.types';

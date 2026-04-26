@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { FormSelect } from './form-select';
 
 const meta: Meta<typeof FormSelect> = {

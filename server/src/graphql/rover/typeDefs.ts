@@ -14,6 +14,7 @@ export const typeDefs = gql`
       authorId: ID
       site: String
       sort: String
+      contentIds: [ID]
     ): ContentsResult!
     author(id: ID!): Author
     authors(page: Int, pageSize: Int, search: String): AuthorsResult!

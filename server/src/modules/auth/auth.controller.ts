@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+
 import type { IAuthController, IAuthService } from './auth.interface';
 import type { LoginRequestDto } from './dto';
 

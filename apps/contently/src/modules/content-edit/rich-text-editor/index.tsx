@@ -2,15 +2,16 @@ import { createContext, useCallback, useContext, useMemo, useState } from 'react
 import styled from '@emotion/styled';
 import { Box, FormHelperText } from '@mui/material';
 import {
+  type BaseEditor,
   createEditor,
-  Transforms,
+  type Descendant,
   Editor,
   Element as SlateElement,
-  type Descendant,
-  type BaseEditor,
+  Transforms,
 } from 'slate';
-import { Slate, Editable, withReact, type ReactEditor } from 'slate-react';
-import { withHistory, type HistoryEditor } from 'slate-history';
+import { type HistoryEditor, withHistory } from 'slate-history';
+import { Editable, type ReactEditor, Slate, withReact } from 'slate-react';
+
 import { deserializeFromHtml, serializeToHtml } from './html-utils';
 import { EditorToolbar } from './toolbar';
 

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+
 import { FormAutocomplete } from '../components/form-autocomplete/form-autocomplete';
 
 interface Item {

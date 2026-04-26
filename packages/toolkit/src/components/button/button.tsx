@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { Button as MuiButton, CircularProgress } from '@mui/material';
 import type { ButtonProps as MuiButtonProps } from '@mui/material';
+import { Button as MuiButton, CircularProgress } from '@mui/material';
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger';
 

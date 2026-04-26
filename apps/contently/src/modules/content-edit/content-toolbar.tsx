@@ -1,4 +1,5 @@
 import { Box, Chip } from '@mui/material';
+
 import { Button } from '@contently/toolkit';
 import { CONTENT_STATUS, STATUS_CHIP_COLOR, STATUS_LABELS } from './content-edit.types';
 

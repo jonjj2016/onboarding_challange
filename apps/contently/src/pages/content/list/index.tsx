@@ -1,5 +1,6 @@
-import { Box, Button, Divider, Pagination, Skeleton, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { Box, Button, Divider, Pagination, Skeleton, Typography } from '@mui/material';
+
 import { routes } from 'data/routes';
 import { ContentCard, ContentFilters, PAGE_SIZE, useContentList } from 'modules/content-list';
 

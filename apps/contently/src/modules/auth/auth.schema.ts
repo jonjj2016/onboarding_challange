@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+
 import type { LoginFormValues } from './auth.types';
 
 export const loginSchema: yup.ObjectSchema<LoginFormValues> = yup.object({

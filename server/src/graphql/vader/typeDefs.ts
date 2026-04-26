@@ -7,6 +7,7 @@ export const typeDefs = gql`
   type Query {
     product(id: ID!): Product
     products(page: Int, pageSize: Int, search: String): ProductsResult!
+    contentIdsByProductSearch(search: String!): [ID!]!
   }
 
   type Mutation {

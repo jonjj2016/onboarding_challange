@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+
 import type { ContentEditFormValues } from './content-edit.types';
 
 function stripHtml(html: string): string {

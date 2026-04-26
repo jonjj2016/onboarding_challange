@@ -1,10 +1,11 @@
-import { Suspense, lazy } from 'react';
+import { lazy, Suspense } from 'react';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
-import { ThemeProvider, CssBaseline, CircularProgress, Box } from '@mui/material';
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
-import { apolloClient } from 'lib/apollo-client';
-import { AuthProvider } from 'contexts/auth-context';
+import { Box, CircularProgress, CssBaseline, ThemeProvider } from '@mui/material';
+
 import RequireAuth from 'components/require-auth';
+import { AuthProvider } from 'contexts/auth-context';
+import { apolloClient } from 'lib/apollo-client';
 import { theme } from 'lib/theme';
 
 // Lazy-loaded pages — each becomes its own JS chunk

@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+
 import type { JWTPayload } from './dto';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-jwt-secret';

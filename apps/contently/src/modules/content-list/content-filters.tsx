@@ -1,9 +1,10 @@
-import { Box, MenuItem, Select, Typography, InputLabel, FormControl } from '@mui/material';
 import { useQuery } from '@apollo/client';
+import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+
 import { FormInput } from '@contently/toolkit';
 import { GET_AUTHORS } from 'queries/authors';
-import { SORT_OPTIONS, STATUS_FILTER_OPTIONS } from './content-list.types';
 import type { SortOption } from './content-list.types';
+import { SORT_OPTIONS, STATUS_FILTER_OPTIONS } from './content-list.types';
 
 interface Author {
   id: string;

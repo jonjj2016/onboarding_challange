@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import { useAuth } from 'contexts/auth-context';
 import { loginSchema } from './auth.schema';
 import type { LoginFormValues } from './auth.types';
