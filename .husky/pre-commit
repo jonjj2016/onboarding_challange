@@ -3,6 +3,7 @@
 
 echo "Running pre-commit checks..."
 
+npm run lint:fix
 # Step 1: Auto-fix staged files (prettier + oxlint --fix + eslint --fix)
 npx lint-staged
 
