@@ -1,5 +1,4 @@
-import { Box, Paper, Typography } from '@mui/material';
-
+import { Box, Paper, Typography } from '@contently/toolkit';
 import { LoginForm, useLogin } from 'modules/auth';
 
 export default function LoginPage() {

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import type { ButtonProps as MuiButtonProps } from '@mui/material';
 import { Button as MuiButton, CircularProgress } from '@mui/material';
 
-type ButtonVariant = 'primary' | 'secondary' | 'danger';
+type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
 
 export interface ButtonProps extends Omit<MuiButtonProps, 'variant' | 'color'> {
   variant?: ButtonVariant;
@@ -14,6 +14,7 @@ const variantMap: Record<ButtonVariant, Pick<MuiButtonProps, 'variant' | 'color'
   primary: { variant: 'contained', color: 'primary' },
   secondary: { variant: 'outlined', color: 'primary' },
   danger: { variant: 'contained', color: 'error' },
+  ghost: { variant: 'text', color: 'inherit' },
 };
 
 const StyledButton = styled(MuiButton)`

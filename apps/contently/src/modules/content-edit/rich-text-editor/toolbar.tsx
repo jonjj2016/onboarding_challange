@@ -5,8 +5,8 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import TitleIcon from '@mui/icons-material/Title';
-import { Box, Divider, IconButton, Tooltip } from '@mui/material';
 
+import { Box, Divider, IconButton, Tooltip } from '@contently/toolkit';
 import { isBlockActive, isMarkActive, toggleBlock, toggleMark, useSlateEditor } from './index';
 
 const ToolbarWrapper = styled(Box)`

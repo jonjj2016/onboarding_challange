@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { Alert, Box, Snackbar } from '@mui/material';
 
+import { Alert, Box, Snackbar } from '@contently/toolkit';
 import { Nav } from 'components/nav';
 import { useSnackbarStore } from 'stores/use-snackbar-store';
 
