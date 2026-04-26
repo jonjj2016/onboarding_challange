@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.colorTheme": "GitHub Dark Default",
 
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -14,5 +14,13 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  "eslint.validate": ["typescript", "typescriptreact"]
+  "eslint.validate": ["typescript", "typescriptreact"],
+
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#1877F2",
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.inactiveBackground": "#1877F2cc",
+    "statusBar.background": "#1877F2",
+    "statusBar.foreground": "#ffffff"
+  }
 }
