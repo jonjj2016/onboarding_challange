@@ -23,7 +23,7 @@ const products: Product[] = [
   { id: '3', name: 'Le Creuset Dutch Oven' },
 ];
 
-function AutocompleteDemo({ initialValue }: { initialValue: Product[] }) {
+const AutocompleteDemo = ({ initialValue }: { initialValue: Product[] }) => {
   const [value, setValue] = useState<Product[]>(initialValue);
   return (
     <FormAutocomplete<Product>
@@ -37,7 +37,7 @@ function AutocompleteDemo({ initialValue }: { initialValue: Product[] }) {
       getOptionKey={(p) => p.id}
     />
   );
-}
+};
 
 export const Empty: Story = {
   render: () => <AutocompleteDemo initialValue={[]} />,

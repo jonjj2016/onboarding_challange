@@ -1,9 +1,9 @@
 import { AppRouter, RootProvider } from 'providers';
 
-export default function App() {
-  return (
-    <RootProvider>
-      <AppRouter />
-    </RootProvider>
-  );
-}
+const App = () => (
+  <RootProvider>
+    <AppRouter />
+  </RootProvider>
+);
+
+export default App;

@@ -10,14 +10,14 @@ interface ContentToolbarProps {
   onUnpublish: () => void;
 }
 
-export function ContentToolbar({
+export const ContentToolbar = ({
   status,
   isFormValid,
   isSaving,
   onSave,
   onPublish,
   onUnpublish,
-}: ContentToolbarProps) {
+}: ContentToolbarProps) => {
   const isDisabled = !isFormValid || isSaving;
 
   return (
@@ -47,4 +47,4 @@ export function ContentToolbar({
       )}
     </Box>
   );
-}
+};

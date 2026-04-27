@@ -25,7 +25,7 @@ interface ContentFiltersProps {
   onSortChange: (val: SortOption) => void;
 }
 
-export default function ContentFilters({
+const ContentFilters = ({
   search,
   status,
   authorId,
@@ -34,7 +34,7 @@ export default function ContentFilters({
   onStatusChange,
   onAuthorChange,
   onSortChange,
-}: ContentFiltersProps) {
+}: ContentFiltersProps) => {
   const { data: authorsData } = useQuery<AuthorsQueryResult>(GET_AUTHORS, {
     variables: { pageSize: 100 },
   });
@@ -83,4 +83,5 @@ export default function ContentFilters({
       />
     </Box>
   );
-}
+};
+export default ContentFilters;

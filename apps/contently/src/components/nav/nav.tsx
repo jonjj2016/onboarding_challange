@@ -5,7 +5,7 @@ import { useAuth } from 'contexts/auth-context';
 import { routes } from 'data/routes';
 import SiteSwitcher from './site-switcher';
 
-export default function Nav() {
+const Nav = () => {
   const { user, logout } = useAuth();
 
   return (
@@ -39,4 +39,5 @@ export default function Nav() {
       </Toolbar>
     </AppBar>
   );
-}
+};
+export default Nav;

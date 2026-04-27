@@ -13,7 +13,7 @@ export interface FormAutocompleteProps<T> {
   isDisabled?: boolean;
 }
 
-export function FormAutocomplete<T>({
+export const FormAutocomplete = <T,>({
   label,
   value,
   onChange,
@@ -23,7 +23,7 @@ export function FormAutocomplete<T>({
   debounceMs = 300,
   error,
   isDisabled = false,
-}: FormAutocompleteProps<T>) {
+}: FormAutocompleteProps<T>) => {
   const [options, setOptions] = useState<T[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -87,4 +87,4 @@ export function FormAutocomplete<T>({
       )}
     />
   );
-}
+};

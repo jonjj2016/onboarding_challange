@@ -8,7 +8,7 @@ const SITE_LABELS: Record<Site, string> = {
   'site-us-travel': 'US Travel',
 };
 
-export default function SiteSwitcher() {
+const SiteSwitcher = () => {
   const activeSite = useSiteStore((s) => s.activeSite);
   const setActiveSite = useSiteStore((s) => s.setActiveSite);
 
@@ -30,4 +30,5 @@ export default function SiteSwitcher() {
       ))}
     </Select>
   );
-}
+};
+export default SiteSwitcher;

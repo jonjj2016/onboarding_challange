@@ -22,13 +22,13 @@ const StyledButton = styled(MuiButton)`
   position: relative;
 `;
 
-export function Button({
+export const Button = ({
   variant = 'primary',
   isLoading = false,
   disabled,
   children,
   ...rest
-}: ButtonProps) {
+}: ButtonProps) => {
   const { variant: muiVariant, color } = variantMap[variant];
 
   return (
@@ -42,4 +42,4 @@ export function Button({
       {children}
     </StyledButton>
   );
-}
+};

@@ -7,11 +7,9 @@ interface Props {
   children: ReactNode;
 }
 
-export function ThemeProvider({ children }: Props) {
-  return (
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </MuiThemeProvider>
-  );
-}
+export const ThemeProvider = ({ children }: Props) => (
+  <MuiThemeProvider theme={theme}>
+    <CssBaseline />
+    {children}
+  </MuiThemeProvider>
+);

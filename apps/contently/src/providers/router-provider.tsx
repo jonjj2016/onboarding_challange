@@ -10,9 +10,9 @@ const ContentListPage = lazy(() => import('pages/content/list'));
 const ContentEditPage = lazy(() => import('pages/content/edit'));
 const ContentNewPage = lazy(() => import('pages/content/new'));
 
-function S({ children }: { children: React.ReactNode }) {
-  return <Suspense fallback={<Loading isCentered />}>{children}</Suspense>;
-}
+const S = ({ children }: { children: React.ReactNode }) => (
+  <Suspense fallback={<Loading isCentered />}>{children}</Suspense>
+);
 
 const router = createBrowserRouter([
   {
@@ -71,6 +71,4 @@ const router = createBrowserRouter([
   },
 ]);
 
-export function AppRouter() {
-  return <RouterProvider router={router} />;
-}
+export const AppRouter = () => <RouterProvider router={router} />;

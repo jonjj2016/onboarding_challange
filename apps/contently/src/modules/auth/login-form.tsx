@@ -10,7 +10,7 @@ interface LoginFormProps {
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
 }
 
-export default function LoginForm({ form, serverError, isSubmitting, onSubmit }: LoginFormProps) {
+const LoginForm = ({ form, serverError, isSubmitting, onSubmit }: LoginFormProps) => {
   const {
     register,
     formState: { errors },
@@ -37,4 +37,5 @@ export default function LoginForm({ form, serverError, isSubmitting, onSubmit }:
       </Button>
     </Box>
   );
-}
+};
+export default LoginForm;

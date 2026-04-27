@@ -27,7 +27,7 @@ interface AuthorsResult {
   authors: { data: { id: string; name: string }[] };
 }
 
-export default function ContentEditPage() {
+const ContentEditPage = () => {
   const {
     form,
     content,
@@ -186,4 +186,5 @@ export default function ContentEditPage() {
       </Modal>
     </Box>
   );
-}
+};
+export default ContentEditPage;

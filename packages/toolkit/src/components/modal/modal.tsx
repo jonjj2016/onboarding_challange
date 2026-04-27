@@ -17,7 +17,7 @@ const StyledDialogTitle = styled(DialogTitle)`
   align-items: center;
 `;
 
-export function Modal({ isOpen, onClose, title, children, maxWidth = 'sm' }: ModalProps) {
+export const Modal = ({ isOpen, onClose, title, children, maxWidth = 'sm' }: ModalProps) => {
   return (
     <Dialog
       open={isOpen}
@@ -37,4 +37,4 @@ export function Modal({ isOpen, onClose, title, children, maxWidth = 'sm' }: Mod
       <DialogContent>{children}</DialogContent>
     </Dialog>
   );
-}
+};

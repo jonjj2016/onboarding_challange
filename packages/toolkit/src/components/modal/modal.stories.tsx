@@ -13,7 +13,7 @@ const meta: Meta<typeof Modal> = {
 export default meta;
 type Story = StoryObj<typeof Modal>;
 
-function ModalDemo({ title, children }: { title: string; children: React.ReactNode }) {
+const ModalDemo = ({ title, children }: { title: string; children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -25,7 +25,7 @@ function ModalDemo({ title, children }: { title: string; children: React.ReactNo
       </Modal>
     </>
   );
-}
+};
 
 export const Default: Story = {
   render: () => (

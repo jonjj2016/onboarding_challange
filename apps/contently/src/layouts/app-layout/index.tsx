@@ -4,7 +4,7 @@ import { Alert, Box, Snackbar } from '@contently/toolkit';
 import { Nav } from 'components/nav';
 import { useSnackbarStore } from 'stores/use-snackbar-store';
 
-export default function AppLayout() {
+const AppLayout = () => {
   const isOpen = useSnackbarStore((s) => s.isOpen);
   const message = useSnackbarStore((s) => s.message);
   const severity = useSnackbarStore((s) => s.severity);
@@ -28,4 +28,5 @@ export default function AppLayout() {
       </Snackbar>
     </Box>
   );
-}
+};
+export default AppLayout;

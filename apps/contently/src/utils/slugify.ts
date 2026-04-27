@@ -1,8 +1,7 @@
-export function slugify(text: string): string {
-  return text
+export const slugify = (text: string): string =>
+  text
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '') // remove non-word chars (keep hyphens)
-    .replace(/[\s_]+/g, '-') // spaces and underscores → hyphens
-    .replace(/^-+|-+$/g, ''); // strip leading/trailing hyphens
-}
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/^-+|-+$/g, '');

@@ -12,7 +12,7 @@ import { slugify } from 'utils/slugify';
 import { contentEditSchema } from '../content-edit.schema';
 import type { ContentEditFormValues, ProductItem } from '../content-edit.types';
 
-export function useContentCreate() {
+export const useContentCreate = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const activeSite = useSiteStore((s) => s.activeSite);
@@ -78,4 +78,4 @@ export function useContentCreate() {
   });
 
   return { form, products, setProducts, isCreating, onSubmit, handleTitleChange, handleSlugChange };
-}
+};

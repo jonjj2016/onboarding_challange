@@ -18,7 +18,7 @@ const ToolbarWrapper = styled(Box)`
   background: #fafafa;
 `;
 
-function MarkButton({
+const MarkButton = ({
   format,
   icon,
   title,
@@ -26,7 +26,7 @@ function MarkButton({
   format: string;
   icon: React.ReactNode;
   title: string;
-}) {
+}) => {
   const editor = useSlateEditor();
   const isActive = isMarkActive(editor, format);
   return (
@@ -43,9 +43,9 @@ function MarkButton({
       </IconButton>
     </Tooltip>
   );
-}
+};
 
-function BlockButton({
+const BlockButton = ({
   type,
   icon,
   title,
@@ -55,7 +55,7 @@ function BlockButton({
   icon: React.ReactNode;
   title: string;
   wrap?: boolean;
-}) {
+}) => {
   const editor = useSlateEditor();
   const isActive = isBlockActive(editor, type);
   return (
@@ -72,9 +72,9 @@ function BlockButton({
       </IconButton>
     </Tooltip>
   );
-}
+};
 
-export function EditorToolbar() {
+export const EditorToolbar = () => {
   return (
     <ToolbarWrapper>
       <MarkButton format="bold" icon={<FormatBoldIcon fontSize="small" />} title="Bold (Ctrl+B)" />
@@ -105,4 +105,4 @@ export function EditorToolbar() {
       />
     </ToolbarWrapper>
   );
-}
+};

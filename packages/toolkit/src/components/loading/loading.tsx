@@ -12,12 +12,10 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
 `;
 
-export function Loading({ size = 'medium', isCentered = false }: LoadingProps) {
+export const Loading = ({ size = 'medium', isCentered = false }: LoadingProps) => {
   const spinner = <CircularProgress size={sizeMap[size]} />;
-  if (isCentered) {
-    return <Wrapper style={{ minHeight: '100vh' }}>{spinner}</Wrapper>;
-  }
-  return spinner;
-}
+  return isCentered ? <Wrapper data-testid="loading-centered">{spinner}</Wrapper> : spinner;
+};

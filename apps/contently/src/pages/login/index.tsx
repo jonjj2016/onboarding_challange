@@ -1,7 +1,7 @@
 import { Box, Paper, Typography } from '@contently/toolkit';
 import { LoginForm, useLogin } from 'modules/auth';
 
-export default function LoginPage() {
+const LoginPage = () => {
   const loginProps = useLogin();
 
   return (
@@ -20,4 +20,5 @@ export default function LoginPage() {
       </Paper>
     </Box>
   );
-}
+};
+export default LoginPage;
