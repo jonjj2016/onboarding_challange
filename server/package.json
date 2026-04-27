@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/datasource-rest": "^6.4.0",
+    "redis": "^4.7.0",
     "@apollo/gateway": "^2.7.4",
     "@apollo/server": "^4.11.0",
     "@apollo/subgraph": "^2.7.4",

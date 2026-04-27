@@ -7,9 +7,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { GET_CONTENT, UPDATE_CONTENT, UPDATE_CONTENT_PRODUCTS } from 'queries/content';
 import { useSiteStore } from 'stores/use-site-store';
 import { useSnackbarStore } from 'stores/use-snackbar-store';
-import { contentEditSchema } from './content-edit.schema';
-import type { ContentEditFormValues, FullContent, ProductItem } from './content-edit.types';
-import { CONTENT_STATUS } from './content-edit.types';
+import { contentEditSchema } from '../content-edit.schema';
+import type { ContentEditFormValues, FullContent, ProductItem } from '../content-edit.types';
+import { CONTENT_STATUS } from '../content-edit.types';
 
 interface ContentQueryResult {
   content: FullContent;

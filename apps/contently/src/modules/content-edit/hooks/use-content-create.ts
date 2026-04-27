@@ -9,8 +9,8 @@ import { CREATE_CONTENT, UPDATE_CONTENT_PRODUCTS } from 'queries/content';
 import { useSiteStore } from 'stores/use-site-store';
 import { useSnackbarStore } from 'stores/use-snackbar-store';
 import { slugify } from 'utils/slugify';
-import { contentEditSchema } from './content-edit.schema';
-import type { ContentEditFormValues, ProductItem } from './content-edit.types';
+import { contentEditSchema } from '../content-edit.schema';
+import type { ContentEditFormValues, ProductItem } from '../content-edit.types';
 
 export function useContentCreate() {
   const navigate = useNavigate();
