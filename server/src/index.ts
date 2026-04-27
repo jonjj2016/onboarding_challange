@@ -9,6 +9,7 @@ import path from 'path';
 import { startRoverSubgraph } from './graphql/rover';
 import { startVaderSubgraph } from './graphql/vader';
 import { authRouter, extractToken } from './modules/auth';
+import { lockRouter } from './modules/lock-content';
 
 async function main() {
   await startRoverSubgraph(4010);
@@ -34,6 +35,7 @@ async function main() {
   app.use(extractToken);
 
   app.use('/api', authRouter);
+  app.use('/api/locks', lockRouter);
 
   app.use(
     '/graphql',

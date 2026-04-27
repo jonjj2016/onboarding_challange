@@ -9,4 +9,5 @@ export { FormSelect } from './components/form-select/form-select';
 export { Loading } from './components/loading/loading';
 export type { ModalProps } from './components/modal/modal';
 export { Modal } from './components/modal/modal';
+export { ProductCard } from './components/product-card/product-card';
 export * from './primitives';

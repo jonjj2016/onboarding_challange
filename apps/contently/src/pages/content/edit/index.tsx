@@ -13,6 +13,7 @@ import {
   Modal,
   Typography,
 } from '@contently/toolkit';
+import { useContentLock } from 'hooks/use-locked';
 import {
   ContentToolbar,
   ProductPicker,
@@ -41,7 +42,7 @@ export default function ContentEditPage() {
     onPublish,
     onUnpublish,
   } = useContentEdit();
-
+  const { isLocked, owner } = useContentLock();
   const {
     register,
     control,
@@ -62,10 +63,10 @@ export default function ContentEditPage() {
   const blocker = useBlocker(isDirty);
 
   useEffect(() => {
-    if (blocker.state === 'blocked' && !isDirty) {
+    if (blocker.state === 'blocked' && !isDirty && !isLocked) {
       blocker.proceed();
     }
-  }, [blocker, isDirty]);
+  }, [blocker, isDirty, isLocked]);
 
   if (isLoadingContent) {
     return <Loading isCentered />;
@@ -77,9 +78,27 @@ export default function ContentEditPage() {
 
   return (
     <Box maxWidth={900} mx="auto">
+      {isLocked && (
+        <Box
+          sx={{
+            bgcolor: 'warning.light',
+            border: '1px solid',
+            borderColor: 'warning.main',
+            borderRadius: 1,
+            px: 2,
+            py: 1.5,
+            mb: 2,
+          }}
+        >
+          <Typography variant="body2">
+            <strong>Read-only:</strong> This content is currently being edited by{' '}
+            <strong>{owner}</strong>. Your changes cannot be saved until they finish.
+          </Typography>
+        </Box>
+      )}
       <ContentToolbar
         status={currentStatus}
-        isFormValid={isValid}
+        isFormValid={isValid && !isLocked}
         isSaving={isSaving}
         onSave={onSave}
         onPublish={onPublish}

@@ -14,7 +14,14 @@ services:
       retries: 10
     ports:
       - '5432:5432'
-
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
   rover-mock:
     build: ./mock-services/rover-mock
     ports:
@@ -66,9 +73,12 @@ services:
     environment:
       ROVER_SERVICE_URL: http://rover-mock:4001
       VADER_SERVICE_URL: http://vader-mock:4002
+      REDIS_URL: redis://redis:6379
       JWT_SECRET: super-secret-jwt-key
       PORT: 8080
     depends_on:
+      redis:
+        condition: service_started
       rover-mock:
         condition: service_healthy
       vader-mock:
@@ -76,3 +86,4 @@ services:
 
 volumes:
   postgres_data:
+  redis-data:

@@ -62,7 +62,6 @@ module.exports = [
         },
       ],
       'simple-import-sort/exports': 'error',
-
       // Enforce TypeScript-only — no .js/.jsx imports
       'no-restricted-syntax': [
         'error',
