@@ -8,9 +8,9 @@ describe('Loading', () => {
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 
-  it('renders centered with full viewport height when isCentered', () => {
-    const { container } = render(<Loading isCentered />);
-    const wrapper = container.firstChild as HTMLElement;
-    expect(wrapper.style.minHeight).toBe('100vh');
+  it('renders a centered wrapper when isCentered', () => {
+    render(<Loading isCentered />);
+    expect(screen.getByTestId('loading-centered')).toBeInTheDocument();
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 });

@@ -2,9 +2,9 @@ import * as yup from 'yup';
 
 import type { ContentEditFormValues } from './content-edit.types';
 
-function stripHtml(html: string): string {
+const stripHtml = (html: string): string => {
   return html.replace(/<[^>]*>/g, '').trim();
-}
+};
 
 export const contentEditSchema: yup.ObjectSchema<ContentEditFormValues> = yup.object({
   title: yup

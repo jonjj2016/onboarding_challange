@@ -15,7 +15,7 @@ interface ContentQueryResult {
   content: FullContent;
 }
 
-export function useContentEdit() {
+export const useContentEdit = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const activeSite = useSiteStore((s) => s.activeSite);
@@ -105,4 +105,4 @@ export function useContentEdit() {
     onUnpublish: () => form.handleSubmit(() => save(CONTENT_STATUS.Unpublished))(),
     navigate,
   };
-}
+};

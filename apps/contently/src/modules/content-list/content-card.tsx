@@ -16,15 +16,15 @@ const StyledCard = styled(Card)`
   }
 `;
 
-function formatDate(iso: string): string {
+const formatDate = (iso: string): string => {
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
   }).format(new Date(iso));
-}
+};
 
-export default function ContentCard({ content }: ContentCardProps) {
+const ContentCard = ({ content }: ContentCardProps) => {
   const navigate = useNavigate();
   const statusConfig = STATUS_CONFIG[content.status as keyof typeof STATUS_CONFIG];
 
@@ -56,4 +56,5 @@ export default function ContentCard({ content }: ContentCardProps) {
       </CardActionArea>
     </StyledCard>
   );
-}
+};
+export default ContentCard;

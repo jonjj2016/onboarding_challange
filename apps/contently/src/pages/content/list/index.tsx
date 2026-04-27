@@ -4,11 +4,9 @@ import { Box, Button, Divider, Pagination, Skeleton, Typography } from '@content
 import { routes } from 'data/routes';
 import { ContentCard, ContentFilters, PAGE_SIZE, useContentList } from 'modules/content-list';
 
-function CardSkeleton() {
-  return <Skeleton variant="rounded" height={88} />;
-}
+const CardSkeleton = () => <Skeleton variant="rounded" height={88} />;
 
-export default function ContentListPage() {
+const ContentListPage = () => {
   const {
     contents,
     total,
@@ -86,4 +84,5 @@ export default function ContentListPage() {
       </Box>
     </Box>
   );
-}
+};
+export default ContentListPage;

@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { Loading } from '@contently/toolkit';
 import { useAuth } from 'contexts/auth-context';
 
-export default function RequireAuth() {
+const RequireAuth = () => {
   const { user, isLoading } = useAuth();
 
   if (isLoading) {
@@ -15,4 +15,5 @@ export default function RequireAuth() {
   }
 
   return <Outlet />;
-}
+};
+export default RequireAuth;

@@ -18,7 +18,7 @@ export interface FormSelectProps {
   size?: 'small' | 'medium';
 }
 
-export function FormSelect({
+export const FormSelect = ({
   label,
   value,
   onChange,
@@ -26,7 +26,7 @@ export function FormSelect({
   error,
   isDisabled = false,
   size = 'medium',
-}: FormSelectProps) {
+}: FormSelectProps) => {
   const [resolvedOptions, setResolvedOptions] = useState<SelectOption[]>(
     Array.isArray(options) ? options : [],
   );
@@ -62,4 +62,4 @@ export function FormSelect({
       {error && <FormHelperText>{error}</FormHelperText>}
     </FormControl>
   );
-}
+};

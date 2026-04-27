@@ -8,14 +8,12 @@ interface Props {
   children: ReactNode;
 }
 
-export function RootProvider({ children }: Props) {
-  return (
-    <ApolloProvider>
-      <ThemeProvider>
-        <AuthProvider>{children}</AuthProvider>
-      </ThemeProvider>
-    </ApolloProvider>
-  );
-}
+export const RootProvider = ({ children }: Props) => (
+  <ApolloProvider>
+    <ThemeProvider>
+      <AuthProvider>{children}</AuthProvider>
+    </ThemeProvider>
+  </ApolloProvider>
+);
 
 export { AppRouter } from './router-provider';

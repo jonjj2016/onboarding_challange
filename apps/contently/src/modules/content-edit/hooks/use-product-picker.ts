@@ -10,10 +10,10 @@ interface ProductsQueryResult {
   products: { data: ProductItem[] };
 }
 
-export function useProductPicker(
+export const useProductPicker = (
   value: ProductItem[],
   onChange: (products: ProductItem[]) => void,
-) {
+) => {
   const sensors = useSensors(useSensor(PointerSensor));
 
   const [fetchProducts] = useLazyQuery<ProductsQueryResult>(GET_PRODUCTS, {
@@ -59,4 +59,4 @@ export function useProductPicker(
     handleRemove,
     handleDragEnd,
   };
-}
+};

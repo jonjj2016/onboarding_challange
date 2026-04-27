@@ -14,7 +14,7 @@ export interface UseLoginReturn {
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
 }
 
-export function useLogin(): UseLoginReturn {
+export const useLogin = (): UseLoginReturn => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [serverError, setServerError] = useState<string | null>(null);
@@ -39,4 +39,4 @@ export function useLogin(): UseLoginReturn {
     isSubmitting: form.formState.isSubmitting,
     onSubmit,
   };
-}
+};

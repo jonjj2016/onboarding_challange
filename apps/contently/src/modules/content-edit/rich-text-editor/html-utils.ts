@@ -3,15 +3,15 @@ import { Element as SlateElement } from 'slate';
 
 // ─── Serialise Slate nodes → HTML ────────────────────────────────────────────
 
-function escapeHtml(str: string): string {
+const escapeHtml = (str: string): string => {
   return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
-}
+};
 
-function serializeNode(node: Descendant): string {
+const serializeNode = (node: Descendant): string => {
   if (!SlateElement.isElement(node)) {
     // Text node
     const t = node as Text & { bold?: boolean; italic?: boolean; underline?: boolean };
@@ -36,21 +36,21 @@ function serializeNode(node: Descendant): string {
     default:
       return `<p>${children}</p>`;
   }
-}
+};
 
-export function serializeToHtml(nodes: Descendant[]): string {
+export const serializeToHtml = (nodes: Descendant[]): string => {
   return nodes.map(serializeNode).join('');
-}
+};
 
 // ─── Deserialise HTML → Slate nodes ─────────────────────────────────────────
 
 type SlateText = { text: string; bold?: boolean; italic?: boolean; underline?: boolean };
 type SlateNode = SlateText | { type: string; children: (SlateText | SlateNode)[] };
 
-function deserializeEl(
+const deserializeEl = (
   el: ChildNode,
   marks: { bold?: boolean; italic?: boolean; underline?: boolean } = {},
-): SlateNode[] {
+): SlateNode[] => {
   if (el.nodeType === Node.TEXT_NODE) {
     const text = el.textContent ?? '';
     if (!text) return [];
@@ -99,9 +99,9 @@ function deserializeEl(
       // otherwise return its children inline
       return children.length > 0 ? children : [{ text: '' }];
   }
-}
+};
 
-export function deserializeFromHtml(html: string): Descendant[] {
+export const deserializeFromHtml = (html: string): Descendant[] => {
   if (!html) return [{ type: 'p', children: [{ text: '' }] }];
   try {
     const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -113,4 +113,4 @@ export function deserializeFromHtml(html: string): Descendant[] {
   } catch {
     return [{ type: 'p', children: [{ text: '' }] }];
   }
-}
+};

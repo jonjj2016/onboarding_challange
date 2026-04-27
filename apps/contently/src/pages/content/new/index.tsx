@@ -15,7 +15,7 @@ interface AuthorsResult {
   authors: { data: { id: string; name: string }[] };
 }
 
-export default function ContentNewPage() {
+const ContentNewPage = () => {
   const { form, products, setProducts, isCreating, onSubmit, handleTitleChange, handleSlugChange } =
     useContentCreate();
 
@@ -120,4 +120,5 @@ export default function ContentNewPage() {
       </Box>
     </Box>
   );
-}
+};
+export default ContentNewPage;

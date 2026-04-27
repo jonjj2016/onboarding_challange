@@ -31,7 +31,7 @@ export interface UseContentListReturn {
   setPage: (val: number) => void;
 }
 
-export function useContentList(): UseContentListReturn {
+export const useContentList = (): UseContentListReturn => {
   const [params, setParams] = useSearchParams();
   const activeSite = useSiteStore((s) => s.activeSite);
 
@@ -106,4 +106,4 @@ export function useContentList(): UseContentListReturn {
     setSort: (val) => setParam('sort', val),
     setPage,
   };
-}
+};

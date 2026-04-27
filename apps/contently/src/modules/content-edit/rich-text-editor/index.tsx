@@ -31,43 +31,46 @@ export const SlateEditorContext = createContext<(BaseEditor & ReactEditor & Hist
   null,
 );
 
-export function useSlateEditor() {
+export const useSlateEditor = () => {
   const editor = useContext(SlateEditorContext);
   if (!editor) throw new Error('Must be inside RichTextEditor');
   return editor;
-}
+};
 
-export function isMarkActive(
+export const isMarkActive = (
   editor: BaseEditor & ReactEditor & HistoryEditor,
   format: string,
-): boolean {
+): boolean => {
   const marks = Editor.marks(editor);
   return marks ? (marks as Record<string, boolean>)[format] === true : false;
-}
+};
 
-export function toggleMark(editor: BaseEditor & ReactEditor & HistoryEditor, format: string): void {
+export const toggleMark = (
+  editor: BaseEditor & ReactEditor & HistoryEditor,
+  format: string,
+): void => {
   if (isMarkActive(editor, format)) {
     Editor.removeMark(editor, format);
   } else {
     Editor.addMark(editor, format, true);
   }
-}
+};
 
-export function isBlockActive(
+export const isBlockActive = (
   editor: BaseEditor & ReactEditor & HistoryEditor,
   type: string,
-): boolean {
+): boolean => {
   const [match] = Editor.nodes(editor, {
     match: (n) => SlateElement.isElement(n) && (n as CustomElement).type === type,
   });
   return !!match;
-}
+};
 
-export function toggleBlock(
+export const toggleBlock = (
   editor: BaseEditor & ReactEditor & HistoryEditor,
   type: BlockType,
   wrap = false,
-): void {
+): void => {
   const isActive = isBlockActive(editor, type);
   if (wrap) {
     Transforms.unwrapNodes(editor, {
@@ -83,9 +86,9 @@ export function toggleBlock(
     return;
   }
   Transforms.setNodes(editor, { type: isActive ? 'p' : type });
-}
+};
 
-function renderElement({
+const renderElement = ({
   attributes,
   children,
   element,
@@ -93,7 +96,7 @@ function renderElement({
   attributes: Record<string, unknown>;
   children: React.ReactNode;
   element: CustomElement;
-}) {
+}) => {
   switch (element.type) {
     case 'h2':
       return <h2 {...attributes}>{children}</h2>;
@@ -114,9 +117,9 @@ function renderElement({
     default:
       return <p {...attributes}>{children}</p>;
   }
-}
+};
 
-function renderLeaf({
+const renderLeaf = ({
   attributes,
   children,
   leaf,
@@ -124,13 +127,13 @@ function renderLeaf({
   attributes: Record<string, unknown>;
   children: React.ReactNode;
   leaf: CustomText;
-}) {
+}) => {
   let content = children;
   if (leaf.bold) content = <strong>{content}</strong>;
   if (leaf.italic) content = <em>{content}</em>;
   if (leaf.underline) content = <u>{content}</u>;
   return <span {...attributes}>{content}</span>;
-}
+};
 
 const EditorWrapper = styled(Box)`
   border: 1px solid rgba(0, 0, 0, 0.23);
@@ -156,7 +159,7 @@ interface RichTextEditorProps {
   error?: string;
 }
 
-export function RichTextEditor({ value, onChange, error }: RichTextEditorProps) {
+export const RichTextEditor = ({ value, onChange, error }: RichTextEditorProps) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
   // oxlint-disable-next-line react-hooks/exhaustive-deps -- intentional: editor initialises once
@@ -207,4 +210,4 @@ export function RichTextEditor({ value, onChange, error }: RichTextEditorProps) 
       </Slate>
     </SlateEditorContext.Provider>
   );
-}
+};

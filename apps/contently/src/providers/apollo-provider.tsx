@@ -7,6 +7,6 @@ interface Props {
   children: ReactNode;
 }
 
-export function ApolloProvider({ children }: Props) {
-  return <BaseApolloProvider client={apolloClient}>{children}</BaseApolloProvider>;
-}
+export const ApolloProvider = ({ children }: Props) => (
+  <BaseApolloProvider client={apolloClient}>{children}</BaseApolloProvider>
+);

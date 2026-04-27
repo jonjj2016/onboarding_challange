@@ -11,7 +11,7 @@ interface ProductPickerProps {
   onChange: (products: ProductItem[]) => void;
 }
 
-export function ProductPicker({ value, onChange }: ProductPickerProps) {
+export const ProductPicker = ({ value, onChange }: ProductPickerProps) => {
   const { sensors, loadOptions, handleSelect, handleRemove, handleDragEnd } = useProductPicker(
     value,
     onChange,
@@ -54,4 +54,4 @@ export function ProductPicker({ value, onChange }: ProductPickerProps) {
       )}
     </Box>
   );
-}
+};

@@ -10,7 +10,7 @@ interface SlugCheckResult {
   isChecking: boolean;
 }
 
-export function useSlugCheck(slug: string, excludeId?: string): SlugCheckResult {
+export const useSlugCheck = (slug: string, excludeId?: string): SlugCheckResult => {
   const activeSite = useSiteStore((s) => s.activeSite);
   const debouncedSlug = useDebounce(slug, 500);
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
@@ -31,4 +31,4 @@ export function useSlugCheck(slug: string, excludeId?: string): SlugCheckResult 
   }, [debouncedSlug, activeSite, excludeId, checkSlug]);
 
   return { isAvailable, isChecking: loading };
-}
+};
