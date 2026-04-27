@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 // Sourdough bread — seeded with Zwilling (p1), Lodge (p3), Microplane (p7)
 const CONTENT_ID = 'c0000000-0000-0000-0000-000000000001';
@@ -76,10 +76,14 @@ test.describe('Content edit page', () => {
     await page.reload();
     await expect(page.locator('.MuiChip-root').first()).toBeVisible({ timeout: 10000 });
 
-    const chipLabels = page.locator('.MuiChip-label');
-    await expect(chipLabels.nth(0)).toContainText(/KitchenAid/i);
-    await expect(chipLabels.nth(1)).toContainText(/Vitamix/i);
-    await expect(chipLabels.nth(2)).toContainText(/Instant Pot/i);
+    // Scope to product chips only (those with a delete button) — excludes the status chip
+    const productChipLabels = page
+      .locator('.MuiChip-root')
+      .filter({ has: page.locator('.MuiChip-deleteIcon') })
+      .locator('.MuiChip-label');
+    await expect(productChipLabels.nth(0)).toContainText(/KitchenAid/i);
+    await expect(productChipLabels.nth(1)).toContainText(/Vitamix/i);
+    await expect(productChipLabels.nth(2)).toContainText(/Instant Pot/i);
   });
 
   test('unsaved changes guard shows modal when navigating away', async ({ page }) => {
@@ -88,7 +92,7 @@ test.describe('Content edit page', () => {
     const titleInput = page.getByLabel('Title');
     await titleInput.click();
     await titleInput.press('End');
-    await titleInput.type(' - edited');
+    await titleInput.pressSequentially(' - edited');
 
     // exact: true — "Contently" logo also contains "Content"
     await page.getByRole('link', { name: 'Content', exact: true }).click();
