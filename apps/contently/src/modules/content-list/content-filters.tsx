@@ -35,7 +35,11 @@ const ContentFilters = ({
   onAuthorChange,
   onSortChange,
 }: ContentFiltersProps) => {
-  const { data: authorsData } = useQuery<AuthorsQueryResult>(GET_AUTHORS, {
+  const {
+    data: authorsData,
+    loading,
+    error,
+  } = useQuery<AuthorsQueryResult>(GET_AUTHORS, {
     variables: { pageSize: 100 },
   });
 
@@ -65,10 +69,12 @@ const ContentFilters = ({
 
       <FormSelect
         label="Author"
+        key={loading ? 'loading' : 'loaded'}
         value={authorId}
+        isDisabled={loading || Boolean(error)}
         onChange={onAuthorChange}
         options={[
-          { value: '', label: 'All authors' },
+          { value: '', label: 'Select author…' },
           ...authors.map((a) => ({ value: a.id, label: a.name })),
         ]}
         size="small"
