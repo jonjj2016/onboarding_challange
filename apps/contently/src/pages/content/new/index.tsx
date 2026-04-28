@@ -30,7 +30,7 @@ const ContentNewPage = () => {
   const slug = watch('slug');
   const { isAvailable, isChecking } = useSlugCheck(slug);
 
-  const { data: authorsData } = useQuery<AuthorsResult>(GET_AUTHORS, {
+  const { data: authorsData, loading: loadingAuthors } = useQuery<AuthorsResult>(GET_AUTHORS, {
     variables: { pageSize: 100 },
   });
   const authors = authorsData?.authors.data ?? [];
@@ -80,6 +80,7 @@ const ContentNewPage = () => {
 
         <FormSelect
           label="Author"
+          key={loadingAuthors ? 'loading' : 'loaded'}
           value={watch('authorId')}
           onChange={(val) => setValue('authorId', val, { shouldValidate: true })}
           options={[
