@@ -23,10 +23,15 @@ const serializeNode = (node: Descendant): string => {
   }
 
   const children = node.children.map(serializeNode).join('');
+  const n = node as unknown as { type: string; url?: string };
 
-  switch ((node as unknown as { type: string }).type) {
+  switch (n.type) {
     case 'h2':
       return `<h2>${children}</h2>`;
+    case 'blockquote':
+      return `<blockquote>${children}</blockquote>`;
+    case 'a':
+      return `<a href="${escapeHtml(n.url ?? '')}">${children}</a>`;
     case 'ul':
       return `<ul>${children}</ul>`;
     case 'ol':
@@ -45,7 +50,7 @@ export const serializeToHtml = (nodes: Descendant[]): string => {
 // ─── Deserialise HTML → Slate nodes ─────────────────────────────────────────
 
 type SlateText = { text: string; bold?: boolean; italic?: boolean; underline?: boolean };
-type SlateNode = SlateText | { type: string; children: (SlateText | SlateNode)[] };
+type SlateNode = SlateText | { type: string; url?: string; children: (SlateText | SlateNode)[] };
 
 const deserializeEl = (
   el: ChildNode,
@@ -74,6 +79,18 @@ const deserializeEl = (
     );
   }
 
+  // Inline link element
+  if (tag === 'a') {
+    const href = (el as HTMLElement).getAttribute('href') ?? '';
+    const linkChildren = Array.from(el.childNodes).flatMap((c) => deserializeEl(c, marks)) as (
+      | SlateText
+      | SlateNode
+    )[];
+    return [
+      { type: 'a', url: href, children: linkChildren.length > 0 ? linkChildren : [{ text: '' }] },
+    ];
+  }
+
   // Block elements — wrap children in a Slate element
   const children = Array.from(el.childNodes).flatMap((c) => deserializeEl(c, marks)) as (
     | SlateText
@@ -85,6 +102,8 @@ const deserializeEl = (
   switch (tag) {
     case 'h2':
       return [{ type: 'h2', children: safeChildren }];
+    case 'blockquote':
+      return [{ type: 'blockquote', children: safeChildren }];
     case 'ul':
       return [{ type: 'ul', children: safeChildren }];
     case 'ol':
@@ -95,8 +114,6 @@ const deserializeEl = (
     case 'div':
       return [{ type: 'p', children: safeChildren }];
     default:
-      // Unknown block — treat as paragraph wrapper if it has block children,
-      // otherwise return its children inline
       return children.length > 0 ? children : [{ text: '' }];
   }
 };
