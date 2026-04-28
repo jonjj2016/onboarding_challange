@@ -23,7 +23,7 @@ const products: Product[] = [
   { id: '3', name: 'Le Creuset Dutch Oven' },
 ];
 
-const AutocompleteDemo = ({ initialValue }: { initialValue: Product[] }) => {
+const ControlledAutocomplete = ({ initialValue }: { initialValue: Product[] }) => {
   const [value, setValue] = useState<Product[]>(initialValue);
   return (
     <FormAutocomplete<Product>
@@ -40,9 +40,9 @@ const AutocompleteDemo = ({ initialValue }: { initialValue: Product[] }) => {
 };
 
 export const Empty: Story = {
-  render: () => <AutocompleteDemo initialValue={[]} />,
+  render: () => <ControlledAutocomplete initialValue={[]} />,
 };
 
 export const WithSelectedItems: Story = {
-  render: () => <AutocompleteDemo initialValue={[products[0], products[1]]} />,
+  render: () => <ControlledAutocomplete initialValue={[products[0], products[1]]} />,
 };

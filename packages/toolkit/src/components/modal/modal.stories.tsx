@@ -13,7 +13,7 @@ const meta: Meta<typeof Modal> = {
 export default meta;
 type Story = StoryObj<typeof Modal>;
 
-const ModalDemo = ({ title, children }: { title: string; children: React.ReactNode }) => {
+const ModalWithTrigger = ({ title, children }: { title: string; children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -29,15 +29,15 @@ const ModalDemo = ({ title, children }: { title: string; children: React.ReactNo
 
 export const Default: Story = {
   render: () => (
-    <ModalDemo title="Unsaved changes">
+    <ModalWithTrigger title="Unsaved changes">
       You have unsaved changes. Are you sure you want to leave?
-    </ModalDemo>
+    </ModalWithTrigger>
   ),
 };
 
 export const LongContent: Story = {
   render: () => (
-    <ModalDemo title="Terms & Conditions">
+    <ModalWithTrigger title="Terms & Conditions">
       <div>
         {Array.from({ length: 10 }).map((_, i) => (
           <p key={i}>
@@ -46,6 +46,6 @@ export const LongContent: Story = {
           </p>
         ))}
       </div>
-    </ModalDemo>
+    </ModalWithTrigger>
   ),
 };
