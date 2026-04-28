@@ -8,8 +8,8 @@ import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import LinkIcon from '@mui/icons-material/Link';
 import LinkOffIcon from '@mui/icons-material/LinkOff';
 import TitleIcon from '@mui/icons-material/Title';
+import { Box, Divider, IconButton, Tooltip } from '@mui/material';
 
-import { Box, Divider, IconButton, Tooltip } from '@contently/toolkit';
 import {
   isBlockActive,
   isLinkActive,
@@ -104,41 +104,35 @@ const LinkButton = () => {
   );
 };
 
-export const EditorToolbar = () => {
-  return (
-    <ToolbarWrapper>
-      <MarkButton format="bold" icon={<FormatBoldIcon fontSize="small" />} title="Bold (Ctrl+B)" />
-      <MarkButton
-        format="italic"
-        icon={<FormatItalicIcon fontSize="small" />}
-        title="Italic (Ctrl+I)"
-      />
-      <MarkButton
-        format="underline"
-        icon={<FormatUnderlinedIcon fontSize="small" />}
-        title="Underline (Ctrl+U)"
-      />
-      <LinkButton />
-      <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
-      <BlockButton type="h2" icon={<TitleIcon fontSize="small" />} title="Heading 2" />
-      <BlockButton
-        type="blockquote"
-        icon={<FormatQuoteIcon fontSize="small" />}
-        title="Blockquote"
-      />
-      <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
-      <BlockButton
-        type="ul"
-        icon={<FormatListBulletedIcon fontSize="small" />}
-        title="Bullet list"
-        wrap
-      />
-      <BlockButton
-        type="ol"
-        icon={<FormatListNumberedIcon fontSize="small" />}
-        title="Numbered list"
-        wrap
-      />
-    </ToolbarWrapper>
-  );
-};
+export const EditorToolbar = () => (
+  <ToolbarWrapper>
+    <MarkButton format="bold" icon={<FormatBoldIcon fontSize="small" />} title="Bold (Ctrl+B)" />
+    <MarkButton
+      format="italic"
+      icon={<FormatItalicIcon fontSize="small" />}
+      title="Italic (Ctrl+I)"
+    />
+    <MarkButton
+      format="underline"
+      icon={<FormatUnderlinedIcon fontSize="small" />}
+      title="Underline (Ctrl+U)"
+    />
+    <LinkButton />
+    <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
+    <BlockButton type="h2" icon={<TitleIcon fontSize="small" />} title="Heading 2" />
+    <BlockButton type="blockquote" icon={<FormatQuoteIcon fontSize="small" />} title="Blockquote" />
+    <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
+    <BlockButton
+      type="ul"
+      icon={<FormatListBulletedIcon fontSize="small" />}
+      title="Bullet list"
+      wrap
+    />
+    <BlockButton
+      type="ol"
+      icon={<FormatListNumberedIcon fontSize="small" />}
+      title="Numbered list"
+      wrap
+    />
+  </ToolbarWrapper>
+);
