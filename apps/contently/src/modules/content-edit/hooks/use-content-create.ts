@@ -1,27 +1,28 @@
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useMutation, useQuery } from '@apollo/client';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { useAuth } from 'contexts/auth-context';
-import { CREATE_CONTENT, UPDATE_CONTENT_PRODUCTS } from 'queries/content';
+import { CREATE_CONTENT, GET_CONTENT, UPDATE_CONTENT_PRODUCTS } from 'queries/content';
 import { useSiteStore } from 'stores/use-site-store';
 import { useSnackbarStore } from 'stores/use-snackbar-store';
 import { slugify } from 'utils/slugify';
 import { contentEditSchema } from '../content-edit.schema';
 import type { ContentEditFormValues, ProductItem } from '../content-edit.types';
+import { ContentQueryResult } from './use-content-edit';
 
 export const useContentCreate = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const activeSite = useSiteStore((s) => s.activeSite);
   const show = useSnackbarStore((s) => s.show);
-
   const [products, setProducts] = useState<ProductItem[]>([]);
-
+  const duplicate = useSearchParams()[0].get('duplicate');
   // Track whether the user has manually edited the slug.
   // While false, slug stays in sync with the title automatically.
+
   const isSlugTouched = useRef(false);
 
   const form = useForm<ContentEditFormValues>({
@@ -76,6 +77,31 @@ export const useContentCreate = () => {
       show('Failed to create content', 'error');
     }
   });
-
-  return { form, products, setProducts, isCreating, onSubmit, handleTitleChange, handleSlugChange };
+  const { data, loading: isLoadingContent } = useQuery<ContentQueryResult>(GET_CONTENT, {
+    variables: { id: duplicate },
+    skip: !duplicate,
+    onCompleted: (result) => {
+      const content = result.content;
+      form.reset({
+        title: content.title,
+        slug: content.slug + '-copy-' + Date.now(),
+        body: content.body,
+        authorId: user?.id,
+      });
+      // Trigger validation so isValid reflects the loaded values immediately
+      void form.trigger();
+      setProducts(content.products);
+    },
+  });
+  return {
+    isLoadingContent,
+    content: data?.content,
+    form,
+    products,
+    setProducts,
+    isCreating,
+    onSubmit,
+    handleTitleChange,
+    handleSlugChange,
+  };
 };

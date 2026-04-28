@@ -1,7 +1,15 @@
 import { Controller } from 'react-hook-form';
 import { useQuery } from '@apollo/client';
 
-import { Box, Button, Divider, FormInput, FormSelect, Typography } from '@contently/toolkit';
+import {
+  Box,
+  Button,
+  Divider,
+  FormInput,
+  FormSelect,
+  Loading,
+  Typography,
+} from '@contently/toolkit';
 import {
   ProductPicker,
   RichTextEditor,
@@ -16,8 +24,17 @@ interface AuthorsResult {
 }
 
 const ContentNewPage = () => {
-  const { form, products, setProducts, isCreating, onSubmit, handleTitleChange, handleSlugChange } =
-    useContentCreate();
+  const {
+    content,
+    isLoadingContent,
+    form,
+    products,
+    setProducts,
+    isCreating,
+    onSubmit,
+    handleTitleChange,
+    handleSlugChange,
+  } = useContentCreate();
 
   const activeSite = useSiteStore((s) => s.activeSite);
   const {
@@ -26,7 +43,6 @@ const ContentNewPage = () => {
     setValue,
     formState: { errors, isValid },
   } = form;
-
   const slug = watch('slug');
   const { isAvailable, isChecking } = useSlugCheck(slug);
 
@@ -34,11 +50,12 @@ const ContentNewPage = () => {
     variables: { pageSize: 100 },
   });
   const authors = authorsData?.authors.data ?? [];
-
   const slugError =
     errors.slug?.message ??
     (isAvailable === false && !isChecking ? 'Slug already exists for this site' : undefined);
-
+  if (isLoadingContent) {
+    return <Loading isCentered />;
+  }
   return (
     <Box maxWidth={900} mx="auto">
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
@@ -108,14 +125,17 @@ const ContentNewPage = () => {
           </Typography>
           <Controller
             name="body"
+            defaultValue={content?.body ?? ''}
             control={control}
-            render={({ field }) => (
-              <RichTextEditor
-                value={field.value}
-                onChange={field.onChange}
-                error={errors.body?.message}
-              />
-            )}
+            render={({ field }) => {
+              return (
+                <RichTextEditor
+                  value={field.value || content?.body || ''}
+                  onChange={field.onChange}
+                  error={errors.body?.message}
+                />
+              );
+            }}
           />
         </Box>
       </Box>

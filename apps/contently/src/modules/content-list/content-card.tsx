@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import { Box, Card, CardActionArea, Chip, Typography } from '@contently/toolkit';
@@ -27,7 +27,6 @@ const formatDate = (iso: string): string => {
 const ContentCard = ({ content }: ContentCardProps) => {
   const navigate = useNavigate();
   const statusConfig = STATUS_CONFIG[content.status as keyof typeof STATUS_CONFIG];
-
   return (
     <StyledCard variant="outlined">
       <CardActionArea onClick={() => navigate(`/content/edit/${content.id}`)} sx={{ p: 2 }}>
@@ -52,6 +51,9 @@ const ContentCard = ({ content }: ContentCardProps) => {
           <Typography variant="body2" color="text.secondary">
             {content.products.length} product{content.products.length !== 1 ? 's' : ''}
           </Typography>
+          <Link onClick={(e) => e.stopPropagation()} to={`/content/new?duplicate=${content.id}`}>
+            Duplicate
+          </Link>
         </Box>
       </CardActionArea>
     </StyledCard>

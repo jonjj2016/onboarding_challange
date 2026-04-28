@@ -12,7 +12,7 @@ import { contentEditSchema } from '../content-edit.schema';
 import type { ContentEditFormValues, FullContent, ProductItem } from '../content-edit.types';
 import { CONTENT_STATUS } from '../content-edit.types';
 
-interface ContentQueryResult {
+export interface ContentQueryResult {
   content: FullContent;
 }
 
