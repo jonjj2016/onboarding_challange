@@ -14,7 +14,9 @@ export const useProductPicker = (
   value: ProductItem[],
   onChange: (products: ProductItem[]) => void,
 ) => {
-  const sensors = useSensors(useSensor(PointerSensor));
+  // distance: 8 — drag only activates after 8px of movement.
+  // Without this, onPointerDown on the wrapper intercepts clicks on the delete button.
+  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }));
 
   const [fetchProducts] = useLazyQuery<ProductsQueryResult>(GET_PRODUCTS, {
     fetchPolicy: 'network-only',
