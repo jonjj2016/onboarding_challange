@@ -6,6 +6,7 @@ import {
   type Descendant,
   Editor,
   Element as SlateElement,
+  Range,
   Transforms,
 } from 'slate';
 import { type HistoryEditor, withHistory } from 'slate-history';
@@ -16,8 +17,10 @@ import { deserializeFromHtml, serializeToHtml } from './html-utils';
 import { EditorToolbar } from './toolbar';
 
 type CustomText = { text: string; bold?: boolean; italic?: boolean; underline?: boolean };
-type BlockType = 'p' | 'h2' | 'ul' | 'ol' | 'li';
-type CustomElement = { type: BlockType; children: Descendant[] };
+type BlockType = 'p' | 'h2' | 'ul' | 'ol' | 'li' | 'blockquote';
+type BlockElement = { type: BlockType; children: Descendant[] };
+type LinkElement = { type: 'a'; url: string; children: Descendant[] };
+type CustomElement = BlockElement | LinkElement;
 
 declare module 'slate' {
   interface CustomTypes {
@@ -26,6 +29,12 @@ declare module 'slate' {
     Text: CustomText;
   }
 }
+
+const withLinks = <T extends BaseEditor & ReactEditor & HistoryEditor>(ed: T): T => {
+  const { isInline } = ed;
+  ed.isInline = (element) => (element as CustomElement).type === 'a' || isInline(element);
+  return ed;
+};
 
 export const SlateEditorContext = createContext<(BaseEditor & ReactEditor & HistoryEditor) | null>(
   null,
@@ -88,6 +97,35 @@ export const toggleBlock = (
   Transforms.setNodes(editor, { type: isActive ? 'p' : type });
 };
 
+export const isLinkActive = (editor: BaseEditor & ReactEditor & HistoryEditor): boolean => {
+  const [link] = Editor.nodes(editor, {
+    match: (n) => SlateElement.isElement(n) && (n as CustomElement).type === 'a',
+  });
+  return !!link;
+};
+
+export const toggleLink = (editor: BaseEditor & ReactEditor & HistoryEditor): void => {
+  if (isLinkActive(editor)) {
+    Transforms.unwrapNodes(editor, {
+      match: (n) => SlateElement.isElement(n) && (n as CustomElement).type === 'a',
+    });
+    return;
+  }
+
+  const url = window.prompt('Enter URL:');
+  if (!url) return;
+
+  const { selection } = editor;
+  if (!selection) return;
+
+  if (Range.isCollapsed(selection)) {
+    Transforms.insertNodes(editor, { type: 'a', url, children: [{ text: url }] });
+  } else {
+    Transforms.wrapNodes(editor, { type: 'a', url, children: [] }, { split: true });
+    Transforms.collapse(editor, { edge: 'end' });
+  }
+};
+
 const renderElement = ({
   attributes,
   children,
@@ -97,9 +135,31 @@ const renderElement = ({
   children: React.ReactNode;
   element: CustomElement;
 }) => {
+  if (element.type === 'a') {
+    return (
+      <a {...attributes} href={element.url} style={{ color: '#1976d2' }}>
+        {children}
+      </a>
+    );
+  }
   switch (element.type) {
     case 'h2':
       return <h2 {...attributes}>{children}</h2>;
+    case 'blockquote':
+      return (
+        <blockquote
+          {...attributes}
+          style={{
+            borderLeft: '4px solid #e0e0e0',
+            margin: '8px 0',
+            paddingLeft: '16px',
+            color: '#666',
+            fontStyle: 'italic',
+          }}
+        >
+          {children}
+        </blockquote>
+      );
     case 'ul':
       return (
         <ul {...attributes} style={{ listStyleType: 'disc', paddingLeft: 24 }}>
@@ -160,7 +220,7 @@ interface RichTextEditorProps {
 }
 
 export const RichTextEditor = ({ value, onChange, error }: RichTextEditorProps) => {
-  const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+  const editor = useMemo(() => withLinks(withHistory(withReact(createEditor()))), []);
 
   // oxlint-disable-next-line react-hooks/exhaustive-deps -- intentional: editor initialises once
   const initialValue = useMemo(() => deserializeFromHtml(value) as Descendant[], []);
@@ -189,6 +249,10 @@ export const RichTextEditor = ({ value, onChange, error }: RichTextEditorProps) 
       if (event.key === 'u') {
         event.preventDefault();
         toggleMark(editor, 'underline');
+      }
+      if (event.key === 'k') {
+        event.preventDefault();
+        toggleLink(editor);
       }
     },
     [editor],

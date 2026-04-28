@@ -45,7 +45,7 @@ export const useContentEdit = () => {
   const form = useForm<ContentEditFormValues>({
     resolver: yupResolver(contentEditSchema),
     defaultValues: { title: '', slug: '', body: '', authorId: '' },
-    mode: 'onChange', // validate on every change so isValid updates immediately
+    mode: 'onChange',
   });
 
   const [updateContent, { loading: isSaving }] = useMutation(UPDATE_CONTENT);

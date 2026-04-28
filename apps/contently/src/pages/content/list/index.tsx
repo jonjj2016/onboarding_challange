@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Box, Button, Divider, Pagination, Skeleton, Typography } from '@contently/toolkit';
@@ -23,7 +24,7 @@ const ContentListPage = () => {
     setPage,
   } = useContentList();
 
-  const totalPages = Math.ceil(total / PAGE_SIZE);
+  const totalPages = useMemo(() => Math.ceil(total / PAGE_SIZE), [total]);
 
   return (
     <Box display="flex" gap={3}>

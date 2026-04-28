@@ -3,7 +3,7 @@ import { ILockRepository, ILockResponse, ILockService } from './lock-content.int
 export class LockService implements ILockService {
   private readonly ttl: number;
   constructor(private lockRepo: ILockRepository) {
-    this.ttl = 15;
+    this.ttl = 30;
   }
 
   async acquireLock(contentId: string, userId: string, userName: string): Promise<ILockResponse> {
