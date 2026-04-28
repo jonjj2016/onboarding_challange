@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useContentLock } from 'hooks/use-locked';
 import { GET_CONTENT, UPDATE_CONTENT, UPDATE_CONTENT_PRODUCTS } from 'queries/content';
 import { useSiteStore } from 'stores/use-site-store';
 import { useSnackbarStore } from 'stores/use-snackbar-store';
@@ -17,6 +18,8 @@ interface ContentQueryResult {
 
 export const useContentEdit = () => {
   const { id } = useParams<{ id: string }>();
+  const { isLocked } = useContentLock();
+
   const navigate = useNavigate();
   const activeSite = useSiteStore((s) => s.activeSite);
   const show = useSnackbarStore((s) => s.show);
@@ -46,6 +49,7 @@ export const useContentEdit = () => {
     resolver: yupResolver(contentEditSchema),
     defaultValues: { title: '', slug: '', body: '', authorId: '' },
     mode: 'onChange',
+    disabled: isLocked,
   });
 
   const [updateContent, { loading: isSaving }] = useMutation(UPDATE_CONTENT);

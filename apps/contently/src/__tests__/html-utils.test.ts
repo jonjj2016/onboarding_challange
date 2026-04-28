@@ -1,9 +1,6 @@
 import type { Descendant } from 'slate';
 
-import {
-  deserializeFromHtml,
-  serializeToHtml,
-} from '../modules/content-edit/rich-text-editor/html-utils';
+import { deserializeFromHtml, serializeToHtml } from '@contently/toolkit';
 
 describe('serializeToHtml', () => {
   it('serializes a paragraph', () => {

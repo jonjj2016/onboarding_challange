@@ -10,4 +10,7 @@ export { Loading } from './components/loading/loading';
 export type { ModalProps } from './components/modal/modal';
 export { Modal } from './components/modal/modal';
 export { ProductCard } from './components/product-card/product-card';
+export { deserializeFromHtml, serializeToHtml } from './components/rich-text-editor/html-utils';
+export type { RichTextEditorProps } from './components/rich-text-editor/index';
+export { RichTextEditor } from './components/rich-text-editor/index';
 export * from './primitives';
