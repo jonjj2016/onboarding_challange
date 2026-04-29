@@ -33,10 +33,21 @@ export const createLockEnforcementPlugin = (
               const contentId = resolveArgValue(field, contentIdArgName, request.variables);
               if (!contentId) continue;
 
-              const lock = await lockRepository.getLock(contentId);
-              if (!lock) continue;
+              const userId = contextValue.user?.sub;
+              if (!userId) {
+                throw new GraphQLError('Authentication required to perform this mutation', {
+                  extensions: { code: 'UNAUTHENTICATED', http: { status: 401 } },
+                });
+              }
 
-              if (lock.userId !== contextValue.user?.sub) {
+              const lock = await lockRepository.getLock(contentId);
+              if (!lock) {
+                throw new GraphQLError('You must acquire a lock before editing this content', {
+                  extensions: { code: 'CONTENT_LOCKED', http: { status: 423 } },
+                });
+              }
+
+              if (lock.userId !== userId) {
                 throw new GraphQLError(`Content is locked by ${lock.userName}`, {
                   extensions: { code: 'CONTENT_LOCKED', http: { status: 423 } },
                 });
