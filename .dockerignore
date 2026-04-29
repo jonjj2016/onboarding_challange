@@ -11,4 +11,6 @@ mock-services/rover-mock/node_modules
 mock-services/rover-mock/dist
 mock-services/vader-mock/node_modules
 mock-services/vader-mock/dist
+shared/node_modules
+shared/dist
 storybook-static

@@ -35,6 +35,7 @@ const config: Configuration & { devServer?: DevServerConfiguration } = {
       providers: path.resolve(__dirname, 'src/providers'),
       data: path.resolve(__dirname, 'src/data'),
       '@contently/toolkit': path.resolve(__dirname, '../../packages/toolkit/src/index.ts'),
+      '@contently/types': path.resolve(__dirname, '../../shared/src/index.ts'),
     },
   },
 

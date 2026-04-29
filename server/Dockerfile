@@ -4,13 +4,16 @@ WORKDIR /workspace
 
 # Copy workspace manifests first to cache npm install
 COPY package*.json ./
+COPY shared/package*.json ./shared/
 COPY apps/contently/package*.json ./apps/contently/
 COPY packages/toolkit/package*.json ./packages/toolkit/
 
 # Install all workspace deps from the root (hoists shared packages)
-RUN npm install
+# HUSKY=0 prevents the prepare script from running git hooks in Docker
+RUN HUSKY=0 npm install
 
 # Copy source
+COPY shared/ ./shared/
 COPY apps/contently/ ./apps/contently/
 COPY packages/toolkit/ ./packages/toolkit/
 

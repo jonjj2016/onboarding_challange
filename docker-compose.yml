@@ -23,7 +23,9 @@ services:
     volumes:
       - redis-data:/data
   rover-mock:
-    build: ./mock-services/rover-mock
+    build:
+      context: .
+      dockerfile: mock-services/rover-mock/Dockerfile
     ports:
       - '4001:4001'
     environment:
