@@ -41,8 +41,11 @@ const ContentEditPage = () => {
     onSave,
     onPublish,
     onUnpublish,
+    navigate,
   } = useContentEdit();
   const { isLocked, owner } = useContentLock();
+
+  const onDuplicate = () => navigate(`/content/new?duplicate=${contentId}`);
   const {
     register,
     control,
@@ -103,6 +106,7 @@ const ContentEditPage = () => {
         onSave={onSave}
         onPublish={onPublish}
         onUnpublish={onUnpublish}
+        onDuplicate={onDuplicate}
       />
 
       <Box display="flex" flexDirection="column" gap={3}>
