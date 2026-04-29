@@ -4,6 +4,8 @@ import { type DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-ki
 import { arrayMove } from '@dnd-kit/sortable';
 
 import { GET_PRODUCTS } from 'queries/products';
+import { useContentLock } from '../../../hooks/use-locked';
+import { useSnackbarStore } from '../../../stores/use-snackbar-store';
 import { ProductItem } from '../content-edit.types';
 
 interface ProductsQueryResult {
@@ -14,6 +16,9 @@ export const useProductPicker = (
   value: ProductItem[],
   onChange: (products: ProductItem[]) => void,
 ) => {
+  const { isLocked } = useContentLock();
+  const show = useSnackbarStore((s) => s.show);
+
   // distance: 8 — drag only activates after 8px of movement.
   // Without this, onPointerDown on the wrapper intercepts clicks on the delete button.
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }));
@@ -42,6 +47,10 @@ export const useProductPicker = (
   };
 
   const handleRemove = (id: string) => {
+    if (isLocked) {
+      show('Content is locked. Unlock to make changes.', 'warning');
+      return;
+    }
     onChange(value.filter((p) => p.id !== id));
   };
 

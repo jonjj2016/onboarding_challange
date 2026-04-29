@@ -9,9 +9,10 @@ import { useProductPicker } from './hooks/use-product-picker';
 interface ProductPickerProps {
   value: ProductItem[];
   onChange: (products: ProductItem[]) => void;
+  disabled?: boolean;
 }
 
-export const ProductPicker = ({ value, onChange }: ProductPickerProps) => {
+export const ProductPicker = ({ value, onChange, disabled = false }: ProductPickerProps) => {
   const { sensors, loadOptions, handleSelect, handleRemove, handleDragEnd } = useProductPicker(
     value,
     onChange,
@@ -21,6 +22,7 @@ export const ProductPicker = ({ value, onChange }: ProductPickerProps) => {
     <Box>
       <FormAutocomplete<ProductItem>
         label="Products"
+        isDisabled={disabled}
         value={value}
         onChange={handleSelect}
         loadOptions={loadOptions}
@@ -41,6 +43,7 @@ export const ProductPicker = ({ value, onChange }: ProductPickerProps) => {
           >
             <SortableContext
               items={value.map((p) => p.id)}
+              disabled={disabled}
               strategy={horizontalListSortingStrategy}
             >
               <Box display="flex" flexWrap="wrap" gap={1}>

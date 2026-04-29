@@ -195,6 +195,21 @@ const renderLeaf = ({
   return <span {...attributes}>{content}</span>;
 };
 
+const EditorContainer = styled(Box)`
+  position: relative;
+`;
+
+// The overlay that blocks interaction
+const DisabledOverlay = styled(Box)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  cursor: not-allowed;
+  background-color: rgba(255, 255, 255, 0.3); // Optional: slight fade effect
+`;
 const EditorWrapper = styled(Box)`
   border: 1px solid rgba(0, 0, 0, 0.23);
   border-radius: 4px;
@@ -217,9 +232,15 @@ export interface RichTextEditorProps {
   value: string;
   onChange: (html: string) => void;
   error?: string;
+  disabled?: boolean;
 }
 
-export const RichTextEditor = ({ value, onChange, error }: RichTextEditorProps) => {
+export const RichTextEditor = ({
+  value,
+  onChange,
+  error,
+  disabled = false,
+}: RichTextEditorProps) => {
   const editor = useMemo(() => withLinks(withHistory(withReact(createEditor()))), []);
 
   // oxlint-disable-next-line react-hooks/exhaustive-deps -- intentional: editor initialises once
@@ -263,12 +284,25 @@ export const RichTextEditor = ({ value, onChange, error }: RichTextEditorProps) 
       <Slate editor={editor} initialValue={editorValue} onChange={handleChange}>
         <EditorWrapper>
           <EditorToolbar />
-          <EditableArea
+          {/* <EditableArea
+            disabled={disabled}
             renderElement={renderElement as never}
             renderLeaf={renderLeaf as never}
             onKeyDown={handleKeyDown}
             placeholder="Start writing…"
-          />
+          /> */}
+          {/* New Container for positioning */}
+          <EditorContainer>
+            {disabled && <DisabledOverlay />}
+
+            <EditableArea
+              readOnly={disabled} // Changed from 'disabled' to 'readOnly'
+              renderElement={renderElement as never}
+              renderLeaf={renderLeaf as never}
+              onKeyDown={handleKeyDown}
+              placeholder="Start writing…"
+            />
+          </EditorContainer>
         </EditorWrapper>
         {error && <FormHelperText error>{error}</FormHelperText>}
       </Slate>
