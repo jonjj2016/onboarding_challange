@@ -1,3 +1,5 @@
+import { useMatch } from 'react-router-dom';
+
 import { MenuItem, Select } from '@contently/toolkit';
 import type { Site } from 'stores/use-site-store';
 import { SITES, useSiteStore } from 'stores/use-site-store';
@@ -12,9 +14,15 @@ const SiteSwitcher = () => {
   const activeSite = useSiteStore((s) => s.activeSite);
   const setActiveSite = useSiteStore((s) => s.setActiveSite);
 
+  const matchEdit = useMatch('/content/edit/:id');
+  const matchNew = useMatch('/content/new');
+
+  const isEditing = !!matchEdit || !!matchNew;
+
   return (
     <Select
       value={activeSite}
+      disabled={isEditing}
       onChange={(e) => setActiveSite(e.target.value as Site)}
       size="small"
       sx={{
