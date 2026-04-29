@@ -1,8 +1,11 @@
+import { createClient } from 'redis';
+
 import { IContentLockRecord, ILockRepository } from './lock-content.interface';
 
+type RedisClient = ReturnType<typeof createClient>;
+
 export class LockRepository implements ILockRepository {
-  // We inject the Redis client type for better intellisense
-  constructor(private client: any) {}
+  constructor(private client: RedisClient) {}
 
   private getRef(contentId: string): string {
     return `lock:${contentId}`;

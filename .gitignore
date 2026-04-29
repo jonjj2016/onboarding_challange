@@ -14,3 +14,4 @@ cookies.txt
 e2e/.auth
 playwright-report
 test-results
+storybook-static

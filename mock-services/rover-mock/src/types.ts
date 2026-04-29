@@ -1,10 +1,4 @@
-export enum ContentStatus {
-  Draft = 1,
-  Scheduled = 2,
-  Published = 3,
-  Deleted = 4,
-  Unpublished = 5,
-}
+export { ContentStatus } from '@contently/types';
 
 export interface Author {
   id: string;
@@ -19,7 +13,7 @@ export interface Content {
   title: string;
   slug: string;
   body: string;
-  status: ContentStatus;
+  status: import('@contently/types').ContentStatus;
   author_id: string;
   site: string;
   created_at: Date;
