@@ -1,4 +1,4 @@
-import { Box, Button, Chip } from '@contently/toolkit';
+import { Box, Button, Chip, DuplicateButton } from '@contently/toolkit';
 import { CONTENT_STATUS, STATUS_CHIP_COLOR, STATUS_LABELS } from './content-edit.types';
 
 interface ContentToolbarProps {
@@ -8,6 +8,7 @@ interface ContentToolbarProps {
   onSave: () => void;
   onPublish: () => void;
   onUnpublish: () => void;
+  onDuplicate: () => void;
 }
 
 export const ContentToolbar = ({
@@ -17,6 +18,7 @@ export const ContentToolbar = ({
   onSave,
   onPublish,
   onUnpublish,
+  onDuplicate,
 }: ContentToolbarProps) => {
   const isDisabled = !isFormValid || isSaving;
 
@@ -27,19 +29,17 @@ export const ContentToolbar = ({
         color={STATUS_CHIP_COLOR[status] ?? 'default'}
         size="small"
       />
-
       <Box flexGrow={1} />
+      <DuplicateButton disabled={isSaving} onClick={onDuplicate} />
 
       <Button variant="secondary" isLoading={isSaving} disabled={isDisabled} onClick={onSave}>
         Save
       </Button>
-
       {(status === CONTENT_STATUS.Draft || status === CONTENT_STATUS.Unpublished) && (
         <Button variant="primary" isLoading={isSaving} disabled={isDisabled} onClick={onPublish}>
           Publish
         </Button>
       )}
-
       {status === CONTENT_STATUS.Published && (
         <Button variant="danger" isLoading={isSaving} disabled={isDisabled} onClick={onUnpublish}>
           Unpublish

@@ -1,7 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { Box, Card, CardActionArea, Chip, Typography } from '@contently/toolkit';
+import { Box, Card, CardActionArea, Chip, DuplicateButton, Typography } from '@contently/toolkit';
 import type { ContentListItem } from './content-list.types';
 import { STATUS_CONFIG } from './content-list.types';
 
@@ -51,9 +51,17 @@ const ContentCard = ({ content }: ContentCardProps) => {
           <Typography variant="body2" color="text.secondary">
             {content.products.length} product{content.products.length !== 1 ? 's' : ''}
           </Typography>
-          <Link onClick={(e) => e.stopPropagation()} to={`/content/new?duplicate=${content.id}`}>
+          <DuplicateButton
+            size="small"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/content/new?duplicate=${content.id}`);
+            }}
+          />
+
+          {/* <Link onClick={(e) => e.stopPropagation()} to={`/content/new?duplicate=${content.id}`}>
             Duplicate
-          </Link>
+          </Link> */}
         </Box>
       </CardActionArea>
     </StyledCard>

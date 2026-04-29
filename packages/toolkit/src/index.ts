@@ -1,5 +1,7 @@
 export type { ButtonProps } from './components/button/button';
 export { Button } from './components/button/button';
+export type { DuplicateButtonProps } from './components/duplicate-button/duplicate-button';
+export { DuplicateButton } from './components/duplicate-button/duplicate-button';
 export type { FormAutocompleteProps } from './components/form-autocomplete/form-autocomplete';
 export { FormAutocomplete } from './components/form-autocomplete/form-autocomplete';
 export type { FormInputProps } from './components/form-input/form-input';
