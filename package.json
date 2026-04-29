@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "docker compose up --build",
     "contently": "npm start --workspace=apps/contently",
+    "storybook": "npm run storybook --workspace=packages/toolkit",
     "test:ci": "npm run test --workspace=apps/contently && npm run test --workspace=packages/toolkit",
     "test": "npm run test:ci",
     "prepare": "husky",
