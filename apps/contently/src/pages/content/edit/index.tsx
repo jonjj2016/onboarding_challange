@@ -124,6 +124,7 @@ const ContentEditPage = () => {
 
         <FormSelect
           label="Author"
+          isDisabled={loadingAuthors || isLocked}
           key={loadingAuthors ? 'loading' : 'loaded'}
           value={watch('authorId')}
           onChange={(val) => setValue('authorId', val, { shouldValidate: true })}
@@ -147,8 +148,10 @@ const ContentEditPage = () => {
             <Controller
               name="body"
               control={control}
+              disabled={isLocked}
               render={({ field }) => (
                 <RichTextEditor
+                  disabled={isLocked}
                   key={content.id}
                   value={content.body}
                   onChange={field.onChange}
@@ -165,7 +168,7 @@ const ContentEditPage = () => {
           <Typography variant="subtitle1" fontWeight={600} mb={2}>
             Products
           </Typography>
-          <ProductPicker value={products} onChange={setProducts} />
+          <ProductPicker disabled={isLocked} value={products} onChange={setProducts} />
         </Box>
       </Box>
 

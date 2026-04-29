@@ -6,10 +6,13 @@ import cors from 'cors';
 import express from 'express';
 import path from 'path';
 
+import { createLockEnforcementPlugin } from './graphql/lock-enforcement.plugin';
 import { startRoverSubgraph } from './graphql/rover';
 import { startVaderSubgraph } from './graphql/vader';
 import { authRouter, extractToken } from './modules/auth';
 import { lockRouter } from './modules/lock-content';
+import { LockRepository } from './modules/lock-content/lock-content.repository';
+import redisClient from './redis-client';
 
 async function main() {
   await startRoverSubgraph(4010);
@@ -24,7 +27,11 @@ async function main() {
     }),
   });
 
-  const server = new ApolloServer({ gateway });
+  const lockRepository = new LockRepository(redisClient);
+  const server = new ApolloServer({
+    gateway,
+    plugins: [createLockEnforcementPlugin(lockRepository)],
+  });
   await server.start();
 
   const app = express();
@@ -41,7 +48,9 @@ async function main() {
     '/graphql',
     cors<cors.CorsRequest>({ origin: true, credentials: true }),
     express.json(),
-    expressMiddleware(server),
+    expressMiddleware(server, {
+      context: async ({ req }) => ({ user: req.user }),
+    }),
   );
 
   // Serve the built React app — only present in Docker (multi-stage build)
