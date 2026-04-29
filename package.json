@@ -16,7 +16,7 @@
     "prepare": "husky",
     "lint:oxlint": "oxlint --config oxlint.json apps/contently/src packages/toolkit/src",
     "lint:eslint": "eslint apps/contently/src server/src packages/toolkit/src",
-    "lint:format": "prettier --check .",
+    "lint:format": "prettier --check . --write",
     "lint:check": "npm run lint:oxlint && npm run lint:eslint && npm run lint:format",
     "lint:fix": "prettier --write . && oxlint --fix apps/contently/src server/src packages/toolkit/src && eslint --fix apps/contently/src server/src packages/toolkit/src",
     "type-check": "tsc --noEmit -p apps/contently/tsconfig.json && tsc --noEmit -p server/tsconfig.json && tsc --noEmit -p packages/toolkit/tsconfig.json",
