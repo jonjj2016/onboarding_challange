@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react';
-import styled from '@emotion/styled';
 import { Box, FormHelperText } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import {
   type BaseEditor,
   createEditor,
@@ -126,6 +126,28 @@ export const toggleLink = (editor: BaseEditor & ReactEditor & HistoryEditor): vo
   }
 };
 
+const StyledLink = styled('a')`
+  color: ${({ theme }) => theme.palette.primary.main};
+`;
+
+const StyledBlockquote = styled('blockquote')`
+  border-left: 4px solid ${({ theme }) => theme.palette.divider};
+  margin: 8px 0;
+  padding-left: 16px;
+  color: ${({ theme }) => theme.palette.text.secondary};
+  font-style: italic;
+`;
+
+const StyledUl = styled('ul')`
+  list-style-type: disc;
+  padding-left: 24px;
+`;
+
+const StyledOl = styled('ol')`
+  list-style-type: decimal;
+  padding-left: 24px;
+`;
+
 const renderElement = ({
   attributes,
   children,
@@ -137,41 +159,20 @@ const renderElement = ({
 }) => {
   if (element.type === 'a') {
     return (
-      <a {...attributes} href={element.url} style={{ color: '#1976d2' }}>
+      <StyledLink {...attributes} href={element.url}>
         {children}
-      </a>
+      </StyledLink>
     );
   }
   switch (element.type) {
     case 'h2':
       return <h2 {...attributes}>{children}</h2>;
     case 'blockquote':
-      return (
-        <blockquote
-          {...attributes}
-          style={{
-            borderLeft: '4px solid #e0e0e0',
-            margin: '8px 0',
-            paddingLeft: '16px',
-            color: '#666',
-            fontStyle: 'italic',
-          }}
-        >
-          {children}
-        </blockquote>
-      );
+      return <StyledBlockquote {...attributes}>{children}</StyledBlockquote>;
     case 'ul':
-      return (
-        <ul {...attributes} style={{ listStyleType: 'disc', paddingLeft: 24 }}>
-          {children}
-        </ul>
-      );
+      return <StyledUl {...attributes}>{children}</StyledUl>;
     case 'ol':
-      return (
-        <ol {...attributes} style={{ listStyleType: 'decimal', paddingLeft: 24 }}>
-          {children}
-        </ol>
-      );
+      return <StyledOl {...attributes}>{children}</StyledOl>;
     case 'li':
       return <li {...attributes}>{children}</li>;
     default:
@@ -214,8 +215,8 @@ const EditorWrapper = styled(Box)`
   border: 1px solid rgba(0, 0, 0, 0.23);
   border-radius: 4px;
   &:focus-within {
-    border-color: #1976d2;
-    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+    border-color: ${({ theme }) => theme.palette.primary.main};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.palette.primary.main}33;
   }
 `;
 
