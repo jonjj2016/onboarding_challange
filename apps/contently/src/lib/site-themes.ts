@@ -13,6 +13,7 @@ export const siteThemes: Record<Site, ReturnType<typeof createTheme>> = {
     palette: {
       primary: { main: '#E65100' }, // deep orange — warmth, appetite
       secondary: { main: '#2E7D32' }, // forest green — fresh ingredients
+      divider: '#E65100', // use primary color for dividers to maintain warmth
     },
     typography: baseTypography,
     shape: { borderRadius: 6 },
@@ -22,6 +23,7 @@ export const siteThemes: Record<Site, ReturnType<typeof createTheme>> = {
     palette: {
       primary: { main: '#880E4F' }, // deep rose — bold, editorial
       secondary: { main: '#4A148C' }, // deep purple — luxury
+      divider: '#880E4F', // use primary color for dividers to maintain boldness
     },
     typography: {
       ...baseTypography,
@@ -34,6 +36,7 @@ export const siteThemes: Record<Site, ReturnType<typeof createTheme>> = {
     palette: {
       primary: { main: '#006064' }, // deep teal — ocean, sky
       secondary: { main: '#E65100' }, // amber — sunsets, adventure
+      divider: '#006064', // use primary color for dividers to maintain freshness
     },
     typography: baseTypography,
     shape: { borderRadius: 12 }, // rounded — friendly, approachable
